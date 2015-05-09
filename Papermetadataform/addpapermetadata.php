@@ -13,72 +13,72 @@
 			{
 				$methodology_name = $_GET["methodology_name"];
 			} 
-			else $methodology_name = NULL;
+			else $methodology_name = "empty now will code later";
 			if(isset ($_GET["methodology_description"]))
 			{
 				$methodology_description = $_GET["methodology_description"];
 			}
-			else $methodology_description = NULL;
+			else $methodology_description = "empty now will code later";
 			if(isset ($_GET["method_name"]))
 			{
 				$method_name = $_GET["method_name"];
 			}
-			else $method_name = NULL;
+			else $method_name = "empty now will code later";
 			if(isset ($_GET["method_description"]))
 			{
 				$method_description = $_GET["method_description"];
 			}
-			else $method_description = NULL;
-			if(isset ($_GET["biblography_ref"]))
+			else $method_description = "empty now will code later";
+			if(isset ($_GET["bibliography_ref"]))
 			{
-				$biblography_ref = $_GET["biblography_ref"];
+				$biblography_ref = $_GET["bibliography_ref"];
 			}
-			else $biblography_ref = NULL;
+			else $biblography_ref = "empty now will code later";
 			if(isset ($_GET["research_level"]))
 			{
 				$research_level = $_GET["research_level"];
 			}
-			else $research_level = NULL;
+			else $research_level = "empty now will code later";
 			if(isset ($_GET["research_question"]))
 			{
 				$research_question = $_GET["research_question"];
 			}
-			else $research_question = NULL;
+			else $research_question = "empty now will code later";
 			if(isset ($_GET["research_method"]))
 			{
 				$research_method = $_GET["research_method"];
 			}
-			else $research_method = NULL;
+			else $research_method = "empty now will code later";
 			if(isset ($_GET["research_metrics"]))
 			{
 				$research_metrics = $_GET["research_metrics"];
 			}
-			else $research_metrics = NULL;
+			else $research_metrics = "empty now will code later";
 			if(isset ($_GET["research_participants"]))
 			{
 				$research_participants = $_GET["research_participants"];
 			}
-			else $research_participants = NULL;
+			else $research_participants = "empty now will code later";
 			if(isset ($_GET["evidence_context"]))
 			{
 				$evidence_context = $_GET["evidence_context"];
 			}
-			else $evidence_context = NULL;
+			else $evidence_context = "empty now will code later";
 			if(isset ($_GET["benefit_outcome"]))
 			{
 				$benefit_outcome = $_GET["benefit_outcome"];
 			}
-			else $benefit_outcome = NULL;
+			else $benefit_outcome = "empty now will code later";
 			if(isset ($_GET["result"]))
 			{
 				$result = $_GET["result"];
 			}
-			else $result = NULL;
+			else $result = "empty now will code later";
 			if(isset ($_GET["method_implementation_integrity"]))
 			{
 				$method_implementation_integrity = $_GET["method_implementation_integrity"];
 			}
-			else $method_implementation_integrity = NULL;
+			else $method_implementation_integrity = "empty now will code later";
 			
 			//connect to the database to submit data
 			$conn = @mysqli_connect('127.0.0.1','root','','test')
@@ -91,7 +91,7 @@
 			methodology_description,
 			method_name,
 			method_description,
-			biblography_ref,
+			bibliography_ref,
 			research_level,
 			research_question,
 			research_method,
@@ -102,7 +102,7 @@
 			result,
 			method_implementation_integrity)
 			VALUES (
-			now()
+			now(),
 			'$methodology_name',
 			'$methodology_description',
 			'$method_name',
@@ -126,8 +126,7 @@
 			}
 			else 
 			{
-				//echo "Paper meta-data failed to add to the database\n";
-				echo mysql_errno($conn) . ": " . mysql_error($conn) . "\n";
+				echo "Paper meta-data failed to add to the database";
 			}
 			//close connection
 			mysqli_close($conn);

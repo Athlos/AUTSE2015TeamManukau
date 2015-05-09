@@ -29,7 +29,6 @@
 				$temp_user_name = $_GET["user_name"];
 				if(strlen($temp_user_name) >= $minLengthUserName && strlen($temp_user_name) <= $maxLengthUserName)
 				{
-					if($)
 					$user_name = $temp_user_name;
 				}
 			}
