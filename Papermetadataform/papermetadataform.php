@@ -1,54 +1,77 @@
 <html>
 	<head>
 		<meta http-equiv="content-type" context = "text/html; charset=utf-8"/>
-			
+		<style type="text/css">
+			<style type="text/css">
+			#table-meta-data-form {
+			}
+			#td-1 {
+			}
+		</style>
 	</head>
 	<body>
 		<h1>Paper Meta-data Form</h1>
 		<!--This is a form that multiple areas to fill out for paper meta data-->
-		<form action = "addpapermetadata.php" method = "POST">			
-			Methodology Name:
-			<input type="text" name="methodology_name">
-			<br>
-			Methodology Description:
-			<input type="text" name="methodology_description">
-			<br>
-			Method Name:
-			<input type="text" name="method_name">
-			<br>
-			Method description:
-			<input type="text" name="method_description">
-			<br>
-			Evidence Source Bibliography References:
-			<input type="text" name="bibliography_ref">
-			<br>
-			Evidence Source Research Level:
-			<input type="text" name="research_level">
-			<br>
-			Research Question:
-			<input type="text" name="research_question">
-			<br>
-			Research Method:
-			<input type="text" name="research_method">
-			<br>
-			Research Metrics:
-			<input type="text" name="research_metrics">
-			<br>
-			Research Participants:
-			<input type="text" name="research_participants">
-			<br>
-			Evidence context (what, why, when, where, who, how):
-			<input type="text" name="evidence_context">
-			<br>
-			Evidence context benefit/outcome under test:
-			<input type="text" name="benefit_outcome">
-			<br>
-			Evidence context Result:
-			<input type="text" name="result">
-			<br>
-			Evidence context method implementation integrity:
-			<input type="text" name="method_implementation_integrity">
-			<br>
+
+		<form action = "addpapermetadata.php" method = "GET">		
+			<table id="table-meta-data-form" border="1px">
+				<tr>
+					<td id="td-1">Methodology Name:</td>
+					<td><input type="text" name="methodology_name"></td>
+				</tr>
+				<tr>
+					<td>Methodology Description:</td>
+					<td><input type="text" name="methodology_description"></td>
+				</tr>
+				<tr>
+					<td>Method Name:</td>
+					<td><input type="text" name="method_name"></td>
+				</tr>
+				<tr>
+					<td>Method description:</td>
+					<td><input type="text" name="method_description"></td>
+				</tr>
+				<tr>
+					<td>Evidence Source Bibliography References:</td>
+					<td><input type="text" name="bibliography_ref"></td>
+				</tr>
+				<tr>
+					<td>Evidence Source Research Level:</td>
+					<td><input type="text" name="research_level"></td>
+				</tr>
+				<tr>
+					<td>Research Question:</td>
+					<td><input type="text" name="research_question"></td>
+				</tr>
+				<tr>
+					<td>Research Method:</td>
+					<td><input type="text" name="research_method"></td>
+				</tr>
+				<tr>
+					<td>Research Metrics:</td>
+					<td><input type="text" name="research_metrics"></td>
+				</tr>
+				<tr>
+					<td>Research Participants:</td>
+					<td><input type="text" name="research_participants"></td>
+				</tr>
+				<tr>
+					<td>Evidence context (what, why, when, where, who, how):</td>
+					<td><input type="text" name="evidence_context"></td>
+				</tr>
+				<tr>
+					<td>Evidence context benefit/outcome under test:</td>
+					<td><input type="text" name="benefit_outcome"></td>
+				</tr>
+				<tr>
+					<td>Evidence context Result:</td>
+					<td><input type="text" name="result"></td>
+				</tr>
+				<tr>
+					<td>Evidence context method implementation integrity:</td>
+					<td><input type="text" name="method_implementation_integrity"></td>
+				</tr>
+			</table>
 			<input type="submit" value="Submit">
 		</form>
 	</body>
