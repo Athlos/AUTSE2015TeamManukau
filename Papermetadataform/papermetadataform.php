@@ -6,7 +6,7 @@
 	<body>
 		<h1>Paper Meta-data Form</h1>
 		<!--This is a form that multiple areas to fill out for paper meta data-->
-		<form action = "addpapermetadata.php" method = "GET">			
+		<form action = "addpapermetadata.php" method = "POST">			
 			Methodology Name:
 			<input type="text" name="methodology_name">
 			<br>
