@@ -1,25 +1,34 @@
 <?php
 	$servername = "localhost";
 	$username = "root";
-	$password = "black";
+	$password = "";
 	$dbname = "test";
 
-		if (isset($_GET['getbtn'])) {
-			if (!isset($_GET['moderate'])) {
-				echo "Paper Accepted!";
-				$moderate = '';
-			}			
-		}
-	
+
+ 	session_start(); // start the session
+	$num = $_SESSION["number"]; // copy the value to a variable
+	echo $num;
+	// $_SESSION["number"] = $num; // update the session variable
+	// header("location:number.php"); // redirect to number.php
+
+	// if (isset($_GET['getbtn'])) {
+	// 	if (!isset($_GET['moderate'])) {
+	// 		echo "Paper Accepted!";
+	// 		$moderate = '';
+	// 	}			
+	// }
+
+	$tmp_comment = "This is a tmp. comment";
+
+
 
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
-	}
-	$post_search = $_GET['selectmenu'];
-	$sql = "SELECT * FROM approved_papers WHERE Submission_Date LIKE '$post_search%'";
+	}	
+	$sql = "SELECT * FROM papers_awaiting_moderation WHERE Submission_Date LIKE '$num%'";
 	$result = $conn->query($sql);
 
 
@@ -50,7 +59,7 @@
 <form name="status_form" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 <!-- <?php echo $_SERVER['PHP_SELF']; ?> -->
 	<?php		
-		if($result->num_rows > 0 && $post_search != null) {
+		if($result->num_rows > 0 && $num != null) {
 			// Create table rows and headers
 			echo "
 				<table id='table' border='2px'>				";
@@ -68,25 +77,51 @@
 		    </tr>
 		    <tr>
 		        <th>Paper Name:</th>
-		        <td><a target='_blank' href=".$row["Paper_URL"].">".$row["Comment"]."</a></td>
+		        <td><a target='_blank' href=".$row["Paper_URL"].">".$row["Paper_URL"]."</a></td>
 		    </tr>
 			";			
 			}
 			// Comment
 			echo "
-				</table>";
+				</table>";				
 		} else {
 			// Return 0 results if query does not match
 			echo "0 results";
 		}
 		// Warning!  Delete query
-		// $sql_delete_row = "DELETE FROM MyGuests WHERE id=3";
+		$sql_delete_row = "DELETE FROM papers_awaiting_moderation WHERE Submission_Date ='$num';";
 		if (isset($_GET['moderate'])) {
 			if ($_GET['moderate'] == 'a') {
-				echo "Accept paper";
-			} elseif ($_GET['moderate'] == 'r') {
-				echo $post_search;
-				$sql_delete_row = "DELETE FROM approved_papers WHERE Paper_URL LIKE '$post_search%'";
+				$sql_add_to_approved_papers = "INSERT INTO approved_papers (Submission_Date, Submitted_By, Paper_URL, Comment) 
+				SELECT Submission_Date, Submitted_By, Paper_URL, '$tmp_comment' 
+				FROM papers_awaiting_moderation
+				WHERE Submission_Date='$num';";
+
+				if ($conn->query($sql_add_to_approved_papers) === TRUE) {	
+					if ($conn->query($sql_delete_row) === TRUE) {
+						echo "Record added";
+						echo $num;
+						session_unset();
+						session_destroy();
+						header("location:view_papers.php");
+					}	else {
+						echo "Failed to remove record!";
+					}			
+				} else {
+					echo "Record not added";
+				}
+
+			} elseif ($_GET['moderate'] == 'r') {				
+				
+				if ($conn->query($sql_delete_row) === TRUE) {					
+					echo "Record deleted";
+					echo $num;
+					session_unset();
+					session_destroy();
+					header("location:view_papers.php");
+				} else {
+					echo "Record not deleted";
+				}							
 			}
 		}
 	?>
