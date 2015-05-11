@@ -1,12 +1,16 @@
 <html>
-<style>
-body {
-    background-image: url("wood.jpg");
-    background-color: #cccccc;
-}
-h1   {color:blue}
-p    {color:black}
-</style>
+<style type="text/css">
+		#select {
+			font-size: 16px;
+			font-weight: bold;
+			width: 300px;
+			color: red;
+			background: black;
+		}
+/*		body {
+			background-color: black;
+		}*/
+	</style>
 <body>
 <div align="center" class = "center" >
 	<h1>Paper was Rejected</h1>

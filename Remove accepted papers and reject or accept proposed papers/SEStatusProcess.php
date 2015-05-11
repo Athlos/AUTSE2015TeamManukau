@@ -3,16 +3,18 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title></title>
-<style>
-body {background-color:lightgrey}
-h1   {color:blue}
-p    {color:black}
-
-body {
-    background-image: url("wood.jpg");
-    background-color: #cccccc;
-}
-</style>
+<style type="text/css">
+		#select {
+			font-size: 16px;
+			font-weight: bold;
+			width: 300px;
+			color: red;
+			background: black;
+		}
+/*		body {
+			background-color: black;
+		}*/
+	</style>
 </head>
 <body>
 <div align="center" class = "center" >
@@ -28,6 +30,7 @@ body {
 	 $sql_db="test";
 	 $sql_tble="status"; // change to your own table name
 	$URL = $_POST['url'];
+	
 	// Create connection
 	$conn = new mysqli($sql_host, $sql_user, $sql_pass, $sql_db);
 	// Check connection
@@ -47,8 +50,10 @@ body {
 		$SubBy = $row["Submitted_By"];
         echo "URL: " . $row["Paper_URL"]. "<br> Submission Date: " . $row["Submission_Date"]. "<br> Submitted by: ". $row["Submitted_By"];
     }
-	} else {
-		echo "0 results";
+	} else {	
+		//if theres no results theres no point continuing simply redirect back
+			header("Location: http://localhost/AUTSE2015TeamManukau/Remove%20accepted%20papers%20and%20reject%20or%20accept%20proposed%20papers/SEStatus.php?"); /* Redirect browser */
+			exit();
 	}
 	$conn->close();
 ?>
