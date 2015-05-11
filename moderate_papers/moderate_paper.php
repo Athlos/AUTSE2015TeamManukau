@@ -17,6 +17,9 @@
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	}	
+	if (isset($_GET['backbtn'])) {
+		header("location:view_papers.php");
+	}
 ?> 
 
 <!DOCTYPE html>
@@ -79,7 +82,9 @@
 			";			
 			}
 			echo "
-				</table>";				
+				</table>";	
+
+
 		} else {
 			// Return 0 results if query does not match
 			echo "0 results";
@@ -126,6 +131,7 @@
 	</p>
 	<p>
 		 <input type="submit" name="getbtn" id="getbtn" value="Post">
+		 <input type="submit" name="backbtn" id="backbtn" value="Back">
 	</p>
 </form>
 
