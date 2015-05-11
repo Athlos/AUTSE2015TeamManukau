@@ -4,23 +4,12 @@
 	$password = "";
 	$dbname = "test";
 
-
+	// Start session to store the data from the get method of the previous page
  	session_start(); // start the session
 	$num = $_SESSION["number"]; // copy the value to a variable
 	echo $num;
-	// $_SESSION["number"] = $num; // update the session variable
-	// header("location:number.php"); // redirect to number.php
-
-	// if (isset($_GET['getbtn'])) {
-	// 	if (!isset($_GET['moderate'])) {
-	// 		echo "Paper Accepted!";
-	// 		$moderate = '';
-	// 	}			
-	// }
 
 	$tmp_comment = "This is a tmp. comment";
-
-
 
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
@@ -28,10 +17,6 @@
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	}	
-	$sql = "SELECT * FROM papers_awaiting_moderation WHERE Submission_Date LIKE '$num%'";
-	$result = $conn->query($sql);
-
-
 ?> 
 
 <!DOCTYPE html>
@@ -58,7 +43,19 @@
 <body>
 <form name="status_form" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 <!-- <?php echo $_SERVER['PHP_SELF']; ?> -->
-	<?php		
+	<?php
+		// Query to display all fields from the 'papers_awaiting_moderation' table
+		$sql = "SELECT * FROM papers_awaiting_moderation WHERE Submission_Date LIKE '$num%'";
+		// Query to delete a the selected record from the 'papers_awaiting_moderation' table
+		$sql_delete_row = "DELETE FROM papers_awaiting_moderation WHERE Submission_Date ='$num';";
+		// Query to insert a record of approved papers into the 'approved_papers' table
+		$sql_add_to_approved_papers = "INSERT INTO approved_papers (Submission_Date, Submitted_By, Paper_URL, Comment) 
+				SELECT Submission_Date, Submitted_By, Paper_URL, '$tmp_comment' 
+				FROM papers_awaiting_moderation
+				WHERE Submission_Date='$num';";
+		// 
+		$result = $conn->query($sql);		
+		// Display data from the 'papers_awaiting_moderation' table
 		if($result->num_rows > 0 && $num != null) {
 			// Create table rows and headers
 			echo "
@@ -81,22 +78,15 @@
 		    </tr>
 			";			
 			}
-			// Comment
 			echo "
 				</table>";				
 		} else {
 			// Return 0 results if query does not match
 			echo "0 results";
-		}
-		// Warning!  Delete query
-		$sql_delete_row = "DELETE FROM papers_awaiting_moderation WHERE Submission_Date ='$num';";
+		}			
 		if (isset($_GET['moderate'])) {
+			// Move the selected record into the 'approved_papers' table
 			if ($_GET['moderate'] == 'a') {
-				$sql_add_to_approved_papers = "INSERT INTO approved_papers (Submission_Date, Submitted_By, Paper_URL, Comment) 
-				SELECT Submission_Date, Submitted_By, Paper_URL, '$tmp_comment' 
-				FROM papers_awaiting_moderation
-				WHERE Submission_Date='$num';";
-
 				if ($conn->query($sql_add_to_approved_papers) === TRUE) {	
 					if ($conn->query($sql_delete_row) === TRUE) {
 						echo "Record added";
@@ -110,9 +100,8 @@
 				} else {
 					echo "Record not added";
 				}
-
-			} elseif ($_GET['moderate'] == 'r') {				
-				
+			// Delete the selected record from the 'papers_awaiting_moderation' table
+			} elseif ($_GET['moderate'] == 'r') {								
 				if ($conn->query($sql_delete_row) === TRUE) {					
 					echo "Record deleted";
 					echo $num;
@@ -125,20 +114,22 @@
 			}
 		}
 	?>
-		<p id="radio_buttons">
-			<!-- Accept function -->
- 			<input type="radio" name="moderate" value='a' id="accept">
-	        <label for="public">Accept</label>
 
-	     	<!-- Reject function -->
- 			<input type="radio" name="moderate" value="r" id="reject" >
-	        <label for="public">Reject</label>
-		</p>
-		<p>
-			 <input type="submit" name="getbtn" id="getbtn" value="Post">
-		</p>
+	<p id="radio_buttons">
+		<!-- Accept button -->
+			<input type="radio" name="moderate" value='a' id="accept">
+        <label for="public">Accept</label>
+
+     	<!-- Reject button -->
+			<input type="radio" name="moderate" value="r" id="reject" >
+        <label for="public">Reject</label>
+	</p>
+	<p>
+		 <input type="submit" name="getbtn" id="getbtn" value="Post">
+	</p>
 </form>
 
+<!-- Close database connection -->
 <?php
 	mysqli_close($conn);
 ?>
