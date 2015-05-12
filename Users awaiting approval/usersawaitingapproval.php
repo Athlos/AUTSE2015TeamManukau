@@ -5,27 +5,27 @@
 <body>
 <h1>Show User accounts awaiting approval</h1>
 <?php
-	echo"<table style='border: solid 1px black;'>";
-		echo"<tr><th>Username</th>
-		<th>Approved?</th></tr>";
 	
 	//connect to database
 	$conn = @mysqli_connect('127.0.0.1','root','','test')
 			or die('Failed to connect to server');
-	$sql = "SELECT user_name FROM users_awaiting_moderation";
-	$result = $conn->query($sql);
-	if($result->num_rows > 0)
-	{
-		//output names from each row
-		while($row = $result->fetch_assoc())
-		{
-			echo"<tr></tr><>";
-		}
-	}
-	else
-	{
-		echo "There are no new Users awaiting approval.";
-	}
+		
+		$query = "SELECT user_name FROM users_awaiting_moderation";
+		$results = mysqli_query($conn, $query)
+		or die("<p>Unable to execute the query.</p>");
+		
+$row = mysqli_fetch_row($results);
+while ($row) {
+echo "$row[0]";
 ?>
+<input type="checkbox" name="permlike" value="like">Approve<br>
+<?php
+
+$row = mysqli_fetch_row($results);
+}
+?>
+
+<a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
+
 </body>
 </html>
