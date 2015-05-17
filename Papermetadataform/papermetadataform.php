@@ -14,7 +14,7 @@
 	<form action = "addpapermetadata.php" method = "GET">
 	<table id="table-meta-data-form" border="1px">
 		<tr>
-			<td>Paper name:</td>
+			<td>Paper Name:</td>
 			<td><input type="text" name="paper_name"></td>
 		</tr>
 		<!--methodology and method-->
@@ -49,32 +49,32 @@
 		</tr>
 		<tr>
 			<td>Evidence context benefit/outcome under test:</td>
-			<td><input type="text" name="evidence_context_benefit_outcomes"></td>
+			<td><input type="text" name="evidence_benefit_outcomes"></td>
 		</tr>
 		<tr>
 			<td>Evidence context Result:</td>
-			<td><input type="text" name="evidence_context_result"></td>
+			<td><input type="text" name="evidence_result"></td>
 		</tr>
 		<tr>
 			<td>Evidence context method implementation integrity:</td>
-			<td><input type="text" name="evidence_context_method_implemention_integrity"></td>
+			<td><input type="text" name="evidence_method_implemention_integrity"></td>
 		</tr>
 		<!--Research-->
 		<tr>
 			<td>Research Question:</td>
-			<td><input type="text" name=""></td>
+			<td><input type="text" name="research_question"></td>
 		</tr>
 		<tr>
 			<td>Research Method:</td>
-			<td><input type="text" name=""></td>
+			<td><input type="text" name="research_method"></td>
 		</tr>
 		<tr>
 			<td>Research Metrics:</td>
-			<td><input type="text" name=""></td>
+			<td><input type="text" name="research_metrics"></td>
 		</tr>
 		<tr>
 			<td>Research Participants:</td>
-			<td><input type="text" name=""></td>
+			<td><input type="text" name="research_participants"></td>
 		</tr>
 		</table>
 		<input type="submit" value="Submit">
