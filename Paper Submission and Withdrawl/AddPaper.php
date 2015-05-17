@@ -8,6 +8,11 @@
 	<?php
 		//Here we will add a paper to a submitted database, awaiting moderation
 		
+	//This file will log you into the database automatically
+	include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
+
+		
+		
 		//First, we get the values out of AddPaperForm.php, which are the URL and Submitter
 		if (isset ($_GET["link"])){
 			if(strlen($_GET["link"]) < 1) {
@@ -23,11 +28,7 @@
 		
 		} else echo "submitter Is Incorrect Data Type"."<br />";
 		
-		//Now we connect to the database, using the default login of 127.0.0.1 (which is localhost), root (default user), '' (default password is blank), 'test' (directory with out databases)
-		//this will throw an exception if the connection fails, if that is the case, please check you have your database in the right folder
 		
-		$conn = @mysqli_connect('127.0.0.1','root','', 'test')
-		or die('Failed to connect to server');
 		
 		//This is the query string, holding the SQL command to use
 		//now() inputs the current date and time into the table
