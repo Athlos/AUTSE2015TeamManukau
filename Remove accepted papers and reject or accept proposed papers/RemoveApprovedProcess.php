@@ -75,8 +75,8 @@
 ?>
 
 <!-- This returns to the home page-->
-	<form action="SEStatus.php" >
-		<input type="submit" value="Home Page" >
+	<form action="SERemoveApprovedPaper.php" >
+		<input type="submit" value="Return" >
 	</form>
 	</div>
 

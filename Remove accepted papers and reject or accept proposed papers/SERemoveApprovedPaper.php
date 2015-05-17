@@ -56,11 +56,7 @@
 	$conn->close();
 ?>
 
-<!-- This returns to the home page-->
-	<form action="SEStatus.php" >
-		<input type="submit" value="Home Page" >
-	</form>
-	</div>
+<a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
 
 </body>
 </div>

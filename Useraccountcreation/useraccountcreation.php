@@ -19,9 +19,6 @@
 			$test_password = "";
 			$test_passwordcheck = "";
 			
-			$user_name = "";
-			$email = "";
-			$password = "";
 			
 			//user name check, a check is made sure that the user name is of sufficient length otherwise
 			//it is not submitted
@@ -34,7 +31,7 @@
 				}
 				else
 				{
-					echo "Username: $user_name is either too short or long.\r\n";
+					echo "Username is either too short or long.\r\n";
 				}
 			}
 			else
@@ -87,6 +84,7 @@
 			or die('Failed to connect to server');
 			
 			//insert data into the database
+			if(isset($user_name) && isset($email) && isset($password)) {
 			$query = "INSERT INTO users_awaiting_moderation
 					(user_name, 
 					email, 
@@ -103,8 +101,11 @@
 			{
 				echo "User Account failed to add to the database";
 			}
+			}
 			//close connection
 			mysqli_close($conn);
 		?>
+		<br>
+		<a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
 	</body>
 </html>

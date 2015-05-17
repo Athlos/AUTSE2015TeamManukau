@@ -55,9 +55,8 @@
 	}
 	$conn->close();
 ?>
-<form action = "SERemoveApprovedPaper.php" method = "POST" >
-	<input type = "submit" value = "remove Approved Papers TEMP LINK">
-	</form>
+<br>
+		<a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
 </body>
 </div>
 </html> 

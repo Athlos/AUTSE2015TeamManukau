@@ -72,7 +72,7 @@
 
 <!-- This returns to the home page-->
 	<form action="SEStatus.php" >
-		<input type="submit" value="Home Page" >
+		<input type="submit" value="Go Back" >
 	</form>
 	</div>
 

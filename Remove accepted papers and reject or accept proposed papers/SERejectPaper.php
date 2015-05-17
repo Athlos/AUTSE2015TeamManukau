@@ -44,7 +44,7 @@
 
 	
 	if ($conn->query($sql) === TRUE) {
-		echo "New record created successfully";
+		echo "New record created successfully<br>";
 	} else {
 		echo "This entry already exists. Please choose another Status Code";
 	}
@@ -70,7 +70,7 @@
 
 <!-- This returns to the home page-->
 	<form action="SEStatus.php" >
-		<input type="submit" value="Home Page" >
+		<input type="submit" value="Go Back" >
 	</form>
 	</div>
 

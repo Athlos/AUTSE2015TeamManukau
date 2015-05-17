@@ -52,7 +52,7 @@
     }
 	} else {	
 		//if theres no results theres no point continuing simply redirect back
-			header("Location: http://localhost/AUTSE2015TeamManukau/Remove%20accepted%20papers%20and%20reject%20or%20accept%20proposed%20papers/SEStatus.php?"); /* Redirect browser */
+			header("Location: SEStatus.php"); /* Redirect browser */
 			exit();
 	}
 	$conn->close();

@@ -16,5 +16,7 @@
 	<input type = "submit" value = "Submit">
 	</form>
 	
+	<a href="Temp.php">Go Back</a><br>
+	
 </body>
 </html> 

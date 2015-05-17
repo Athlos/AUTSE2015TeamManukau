@@ -7,10 +7,10 @@
 		<h1>User account creation</h1>
 			<!-- changed from POST to GET method -->
 			<form action = "useraccountcreation.php" method = "GET">
-			User Name:<br>
+			User Name(between 6-12):<br>
 			<input type="text" name="test_user_name" value="username">
 			<br>
-			E-mail:<br>
+			E-mail(must include @):<br>
 			<input type="text" name="test_email" value="test@test.com">
 			<br>
 			Password(between 6-12):<br>
@@ -23,5 +23,6 @@
 			<br>
 			<input type="submit" value="Submit">
 		</form>
+		<a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
 	</body>
 </html>

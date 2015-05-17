@@ -10,15 +10,18 @@
 		
 		//First, we get the values out of AddPaperForm.php, which are the URL and Submitter
 		if (isset ($_GET["link"])){
-			$link = $_GET["link"];
+			if(strlen($_GET["link"]) < 1) {
+				echo "Please type in a paper name";
+			} else $link = $_GET["link"];
 		} else echo "link Is Incorrect Data Type"."<br />";
 		
 		if (isset ($_GET["submitter"])){
-			$submitter = $_GET["submitter"];
-		} else echo "submitter Is Incorrect Data Type"."<br />";
 		
-		echo $link;
-		echo $submitter;
+			if(strlen($_GET["submitter"]) < 1) {
+				echo "Please type in a Submitter";
+			} else $submitter = $_GET["submitter"];
+		
+		} else echo "submitter Is Incorrect Data Type"."<br />";
 		
 		//Now we connect to the database, using the default login of 127.0.0.1 (which is localhost), root (default user), '' (default password is blank), 'test' (directory with out databases)
 		//this will throw an exception if the connection fails, if that is the case, please check you have your database in the right folder
@@ -42,5 +45,7 @@
 		
 		
 	?>
+	
+	<br><a href="Temp.php">Go Back</a><br>
 </body>
 </html>
