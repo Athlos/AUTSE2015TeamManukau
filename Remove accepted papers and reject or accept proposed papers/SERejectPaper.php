@@ -1,12 +1,16 @@
 <html>
-<style>
-body {
-    background-image: url("wood.jpg");
-    background-color: #cccccc;
-}
-h1   {color:blue}
-p    {color:black}
-</style>
+<style type="text/css">
+		#select {
+			font-size: 16px;
+			font-weight: bold;
+			width: 300px;
+			color: red;
+			background: black;
+		}
+/*		body {
+			background-color: black;
+		}*/
+	</style>
 <body>
 <div align="center" class = "center" >
 	<h1>Paper was Rejected</h1>
@@ -40,7 +44,7 @@ p    {color:black}
 
 	
 	if ($conn->query($sql) === TRUE) {
-		echo "New record created successfully";
+		echo "New record created successfully<br>";
 	} else {
 		echo "This entry already exists. Please choose another Status Code";
 	}
@@ -66,7 +70,7 @@ p    {color:black}
 
 <!-- This returns to the home page-->
 	<form action="SEStatus.php" >
-		<input type="submit" value="Home Page" >
+		<input type="submit" value="Go Back" >
 	</form>
 	</div>
 

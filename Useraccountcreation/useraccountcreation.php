@@ -13,14 +13,12 @@
 			$minLengthUserName = 6;
 			$maxLengthPassword = 12;
 			$minLengthPassword = 6;
+			
 			$test_user_name = "";
 			$test_email = "";
 			$test_password = "";
 			$test_passwordcheck = "";
 			
-			$user_name = "";
-			$email = "";
-			$password = "";
 			
 			//user name check, a check is made sure that the user name is of sufficient length otherwise
 			//it is not submitted
@@ -33,7 +31,7 @@
 				}
 				else
 				{
-					echo "Username: $user_name is either too short or long.\r\n";
+					echo "Username is either too short or long.\r\n";
 				}
 			}
 			else
@@ -63,7 +61,7 @@
 			
 			//password check, a check is made sure that the password is of sufficient length otherwise
 			//it is not submitted, it also checks to make sure the passwords entered are both exactly the same
-			if(isset ($_GET["password"]))
+			if(isset ($_GET["test_password"]))
 			{
 				$test_password = $_GET["test_password"];
 				$test_passwordcheck = $_GET["test_passwordcheck"];
@@ -82,12 +80,32 @@
 				echo "Password cannot be blank.\r\n";
 			}
 			//connect to the database
-			//$conn = @mysqli_connect('127.0.0.1','root','', 'test')
-			//or die('Failed to connect to server');
+			$conn = @mysqli_connect('127.0.0.1','root','','test')
+			or die('Failed to connect to server');
 			
 			//insert data into the database
-			//$query = "INSERT INTO users_awaiting_confirmation(Submission_Date, Submitted_By, Paper_URL)
-			//VALUES ('user_name','email', 'password')"
+			if(isset($user_name) && isset($email) && isset($password)) {
+			$query = "INSERT INTO users_awaiting_moderation
+					(user_name, 
+					email, 
+					password)
+			VALUES ('$user_name',
+					'$email', 
+					'$password')";
+			//creates a string that displays if SQL query is successful or not
+			if($conn->query($query) === TRUE)
+			{
+				echo "User Account successfully added to the database";
+			}
+			else 
+			{
+				echo "User Account failed to add to the database";
+			}
+			}
+			//close connection
+			mysqli_close($conn);
 		?>
+		<br>
+		<a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
 	</body>
 </html>

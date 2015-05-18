@@ -45,7 +45,7 @@
 		if($num_rows === 0) {
 			// row not found,	check main database
 			
-			$query1 = "SELECT Paper_URL FROM paper
+			$query1 = "SELECT Paper_URL FROM approved_papers
 			WHERE Paper_URL = '$link';";
 			
 			$result = mysqli_query($conn, $query)
@@ -79,5 +79,8 @@
 		
 		
 	?>
+	
+	<br><a href="Temp.php">Go Back</a>
+	
 </body>
 </html>

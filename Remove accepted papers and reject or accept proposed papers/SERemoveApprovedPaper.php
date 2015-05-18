@@ -3,20 +3,22 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title></title>
-<style>
-body {background-color:lightgrey}
-h1   {color:blue}
-p    {color:black}
-
-body {
-    background-image: url("wood.jpg");
-    background-color: #cccccc;
-}
-</style>
+<style type="text/css">
+		#select {
+			font-size: 16px;
+			font-weight: bold;
+			width: 300px;
+			color: red;
+			background: black;
+		}
+/*		body {
+			background-color: black;
+		}*/
+	</style>
 </head>
 <body>
 <div align="center" class = "center" >
-	<h1>Choose Paper</h1>
+	<h1>Choose Paper to remove</h1>
 	<form action = "RemoveApprovedProcess.php" method = "POST" >
 	<label>Enter Paper URL: <input type = "text" name = "url" > </label>
 	<input type = "submit" value = "Remove Paper">
@@ -54,11 +56,7 @@ body {
 	$conn->close();
 ?>
 
-<!-- This returns to the home page-->
-	<form action="SEStatus.php" >
-		<input type="submit" value="Home Page" >
-	</form>
-	</div>
+<a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
 
 </body>
 </div>

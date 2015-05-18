@@ -3,16 +3,18 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title></title>
-<style>
-body {background-color:lightgrey}
-h1   {color:blue}
-p    {color:black}
-
-body {
-    background-image: url("wood.jpg");
-    background-color: #cccccc;
-}
-</style>
+<style type="text/css">
+		#select {
+			font-size: 16px;
+			font-weight: bold;
+			width: 300px;
+			color: red;
+			background: black;
+		}
+/*		body {
+			background-color: black;
+		}*/
+	</style>
 </head>
 <body>
 <div align="center" class = "center" >
@@ -22,9 +24,7 @@ body {
 	<input type = "submit" value = "View Paper">
 	</form>
 	<br>
-	<form action = "SERemoveApprovedPaper.php" method = "POST" >
-	<input type = "submit" value = "remove Approved Papers">
-	</form>
+
 	
 	<?php
 	// Include file with sql details
@@ -55,7 +55,8 @@ body {
 	}
 	$conn->close();
 ?>
-
+<br>
+		<a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
 </body>
 </div>
 </html> 

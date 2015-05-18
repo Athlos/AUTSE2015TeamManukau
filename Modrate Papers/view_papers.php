@@ -130,11 +130,12 @@
 <!-- Debug -->
 <pre>
 	<?php
-		if ($_GET) {
-			echo 'Contents of the $_GET array: <br>';
-			print_r($_GET);
-		}
+		//if ($_GET) {
+			//echo 'Contents of the $_GET array: <br>';
+			//print_r($_GET);
+		//}
 	?>
 </pre>
+<a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
 </body>
 </html>
