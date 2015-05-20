@@ -87,13 +87,13 @@
 			if(isset($user_name) && isset($email) && isset($password)) {
 			$query = "INSERT INTO user_accounts
 					(user_name, 
-					email, 
-					password,
-					approved)
+					user_email, 
+					user_password,
+					user_approved)
 			VALUES ('$user_name',
-					'$user_email', 
-					'$user_password',
-					'$user_approved')";
+					'$email', 
+					'$password',
+					'$approved')";
 			//creates a string that displays if SQL query is successful or not
 			if($conn->query($query) === TRUE)
 			{

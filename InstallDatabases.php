@@ -54,7 +54,7 @@
 				  `user_email` varchar(50) NOT NULL,
 				  `user_password` varchar(12) NOT NULL,
 				  `user_approved` tinyint(1) NOT NULL
-				) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
+				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 		
 		//This executes the string we have made, and returns if it was able to be executed
 		if ($conn->query($query) === FALSE)
