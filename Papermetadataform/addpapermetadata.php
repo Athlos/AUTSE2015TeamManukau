@@ -85,8 +85,7 @@
 			else $research_participants = "empty now will edit later";
 			
 			//connect to the database to submit data
-			$conn = @mysqli_connect('127.0.0.1','root','','test')
-			or die('Failed to connect to server');
+			include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
 			
 			//creates a query that submits the data into the table names in the table are subject to change
 			$methodologyQuery = "INSERT INTO paper_methodology_and_method(
@@ -96,11 +95,11 @@
 			paper_method_name,
 			paper_method_description)
 			VALUES (
-			$paper_name,
-			$methodology_name,
-			$methodology_description,
-			$method_name,
-			$method_description)";
+			'$paper_name',
+			'$methodology_name',
+			'$methodology_description',
+			'$method_name',
+			'$method_description')";
 			
 			$evidenceQuery = "INSERT INTO paper_evidence_source_and_item(
 			paper_name,
@@ -111,13 +110,13 @@
 			paper_evidence_result,
 			paper_evidence_method_implemention_integrity)
 			VALUES (
-			$paper_name,
-			$evidence_source_bibliography_references,
-			$evidence_source_research_level,
-			$evidence_context,
-			$evidence_benefit_outcomes,
-			$evidence_result,
-			$evidence_method_implemention_integrity)";
+			'$paper_name',
+			'$evidence_source_bibliography_references',
+			'$evidence_source_research_level',
+			'$evidence_context',
+			'$evidence_benefit_outcomes',
+			'$evidence_result',
+			'$evidence_method_implemention_integrity')";
 			$reserachQuery = "INSERT INTO paper_research(
 			paper_name,
 			paper_research_question,
@@ -125,11 +124,11 @@
 			paper_research_metrics,
 			paper_research_participants)
 			VALUES (
-			$paper_name,
-			$research_question,
-			$research_method,
-			$research_metrics,
-			$research_participants)";
+			'$paper_name',
+			'$research_question',
+			'$research_method',
+			'$research_metrics',
+			'$research_participants')";
 			
 			//creates a string that displays if SQL query is successful or not
 			if (($conn->query($methodologyQuery) === TRUE)&&($conn->query($evidenceQuery) === TRUE)&&
