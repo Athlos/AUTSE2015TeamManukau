@@ -7,9 +7,7 @@
 <?php
 	
 	//connect to database
-	$conn = @mysqli_connect('127.0.0.1','root','','test')
-			or die('Failed to connect to server');
-		
+	include ("C:/xampp/htdocs/AUTSE2015TeamManukau/DatabaseLogin.php");		
 		$query = "SELECT user_name FROM users_awaiting_moderation";
 		$results = mysqli_query($conn, $query)
 		or die("<p>Unable to execute the query.</p>");

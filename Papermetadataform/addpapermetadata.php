@@ -85,9 +85,9 @@
 			else $research_participants = "empty now will edit later";
 			
 			//connect to the database to submit data
-			$conn = @mysqli_connect('127.0.0.1','root','','test')
-			or die('Failed to connect to server');
-			
+			//$conn = @mysqli_connect('127.0.0.1','root','','test')
+			//or die('Failed to connect to server');
+			include ("C:/xampp/htdocs/AUTSE2015TeamManukau/DatabaseLogin.php");
 			//creates a query that submits the data into the table names in the table are subject to change
 			$methodologyQuery = "INSERT INTO paper_methodology_and_method(
 			paper_name,
