@@ -111,11 +111,12 @@ CREATE TABLE IF NOT EXISTS `paper_research` (
 -- Data exporting was unselected.
 
 
--- Dumping structure for table test.users_awaiting_moderation
-CREATE TABLE IF NOT EXISTS `users_awaiting_moderation` (
+-- Dumping structure for table test.user_accounts
+CREATE TABLE IF NOT EXISTS `user_accounts` (
   `user_name` varchar(12) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(12) NOT NULL
+  `user_email` varchar(50) NOT NULL,
+  `user_password` varchar(12) NOT NULL,
+  `user_approved` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
