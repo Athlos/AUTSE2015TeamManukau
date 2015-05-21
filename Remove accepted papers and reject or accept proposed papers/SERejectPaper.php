@@ -24,7 +24,7 @@
 	$SubDate = $_POST['Submission_Date'];
 	$SubBy = $_POST['Submitted_By'];
 	// Include file with sql details
-	 $sql_host="localhost";
+	 /* $sql_host="localhost";
 	 $sql_user="root";
 	 $sql_pass="";
 	 $sql_db="test";
@@ -35,8 +35,10 @@
 	// Check connection
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
-	} 
-
+	}  */
+	
+	//This file will log you into the database automatically
+	include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
 	
 	
 	$sql = "INSERT INTO papers_awaiting_removal(Submission_Date, Submitted_By, Paper_URL, Comment)

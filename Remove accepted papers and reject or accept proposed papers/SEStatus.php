@@ -28,7 +28,7 @@
 	
 	<?php
 	// Include file with sql details
-	 $sql_host="localhost";
+	 /* $sql_host="localhost";
 	 $sql_user="root";
 	 $sql_pass="";
 	 $sql_db="test";
@@ -39,7 +39,9 @@
 	// Check connection
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
-	} 
+	}  */
+	//This file will log you into the database automatically
+	include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
 	
 	$sql = "SELECT * from papers_awaiting_moderation";
 	$result = $conn->query($sql);

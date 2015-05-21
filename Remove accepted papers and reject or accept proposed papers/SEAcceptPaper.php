@@ -24,7 +24,7 @@
 	$SubDate = $_POST['Submission_Date'];
 	$SubBy = $_POST['Submitted_By'];
 	// Include file with sql details
-	 $sql_host="localhost";
+	 /* $sql_host="localhost";
 	 $sql_user="root";
 	 $sql_pass="";
 	 $sql_db="test";
@@ -35,12 +35,13 @@
 	// Check connection
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
-	} 
-
+	}  */
+	//This file will log you into the database automatically
+		include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
 	
-	
-	$sql = "INSERT INTO approved_papers(Submission_Date, Submitted_By, Paper_URL, Comment)
-	VALUES ('$SubDate','$SubBy','$URL','Comment')";
+	//for now paper url is doubling as paper name
+	$sql = "INSERT INTO approved_papers(paper_name,Submission_Date, Submitted_By, Paper_URL)
+	VALUES ('$URL','$SubDate','$SubBy','$URL')";
 
 	//test database record. This works. If you mess up syntax check against this
 	//$sql = "INSERT INTO status(Share)

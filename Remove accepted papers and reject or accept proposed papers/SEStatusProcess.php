@@ -24,7 +24,7 @@
 	
 	<?php
 	// Include file with sql details
-	 $sql_host="localhost";
+	 /* $sql_host="localhost";
 	 $sql_user="root";
 	 $sql_pass="";
 	 $sql_db="test";
@@ -36,7 +36,10 @@
 	// Check connection
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
-	} 
+	}  */
+	$URL = $_POST['url'];
+	//This file will log you into the database automatically
+	include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
 	
 	$sql = "SELECT * from papers_awaiting_moderation where Paper_URL = '$URL'";
 	$result = $conn->query($sql);
@@ -52,6 +55,7 @@
     }
 	} else {	
 		//if theres no results theres no point continuing simply redirect back
+			echo "Failed";
 			header("Location: SEStatus.php"); /* Redirect browser */
 			exit();
 	}

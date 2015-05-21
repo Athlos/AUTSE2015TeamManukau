@@ -6,9 +6,8 @@
 <h1>Show User accounts awaiting approval</h1>
 <?php
 	
-	//connect to database
-	$conn = @mysqli_connect('127.0.0.1','root','','test')
-			or die('Failed to connect to server');
+	//This file will log you into the database automatically
+	include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
 		
 		$query = "SELECT user_name FROM users_awaiting_moderation";
 		$results = mysqli_query($conn, $query)

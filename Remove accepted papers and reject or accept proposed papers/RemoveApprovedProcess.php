@@ -22,19 +22,22 @@
 	//grab hidden fields
 	$URL = $_POST['url'];
 	$delete = false;
-	// Include file with sql details
-	 $sql_host="localhost";
+	// Include file with sql details 
+	 /* $sql_host="localhost";
 	 $sql_user="root";
 	 $sql_pass="";
 	 $sql_db="test";
 	 $sql_tble="status"; // change to your own table name
 
 	// Create connection
-	$conn = new mysqli($sql_host, $sql_user, $sql_pass, $sql_db);
+	$conn = new mysqli($sql_host, $sql_user, $sql_pass, $sql_db); */
 	// Check connection
-	if ($conn->connect_error) {
+	/* if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
-	} 
+	} */
+	
+	//This file will log you into the database automatically
+	include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
 	$sql = "SELECT * from approved_papers";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
