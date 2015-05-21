@@ -83,28 +83,6 @@ CREATE TABLE IF NOT EXISTS `paper_evidence_source_and_item` (
 -- Data exporting was unselected.
 
 
--- Dumping structure for table test.paper_metadata
-CREATE TABLE IF NOT EXISTS `paper_metadata` (
-  `Submission_Date` datetime(6) NOT NULL,
-  `methodology_name` varchar(50) NOT NULL,
-  `methodology_description` varchar(100) NOT NULL,
-  `method_name` varchar(50) NOT NULL,
-  `method_description` varchar(100) NOT NULL,
-  `biblography_ref` varchar(100) NOT NULL,
-  `research_level` varchar(100) NOT NULL,
-  `research_question` varchar(100) NOT NULL,
-  `research_method` varchar(100) NOT NULL,
-  `research_metrics` varchar(100) NOT NULL,
-  `research_participants` varchar(100) NOT NULL,
-  `evidence_context` varchar(100) NOT NULL,
-  `benefit_outcome` varchar(100) NOT NULL,
-  `result` varchar(100) NOT NULL,
-  `method_implementation_integrity` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Data exporting was unselected.
-
-
 -- Dumping structure for table test.paper_methodology_and_method
 CREATE TABLE IF NOT EXISTS `paper_methodology_and_method` (
   `paper_name` varchar(255) NOT NULL,
@@ -133,11 +111,12 @@ CREATE TABLE IF NOT EXISTS `paper_research` (
 -- Data exporting was unselected.
 
 
--- Dumping structure for table test.users_awaiting_moderation
-CREATE TABLE IF NOT EXISTS `users_awaiting_moderation` (
+-- Dumping structure for table test.user_accounts
+CREATE TABLE IF NOT EXISTS `user_accounts` (
   `user_name` varchar(12) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(12) NOT NULL
+  `user_email` varchar(50) NOT NULL,
+  `user_password` varchar(12) NOT NULL,
+  `user_approved` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.

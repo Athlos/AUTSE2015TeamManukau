@@ -18,6 +18,7 @@
 			$test_email = "";
 			$test_password = "";
 			$test_passwordcheck = "";
+			$approved = "0";
 			
 			
 			//user name check, a check is made sure that the user name is of sufficient length otherwise
@@ -80,18 +81,19 @@
 				echo "Password cannot be blank.\r\n";
 			}
 			//connect to the database
-			$conn = @mysqli_connect('127.0.0.1','root','','test')
-			or die('Failed to connect to server');
+			include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
 			
 			//insert data into the database
 			if(isset($user_name) && isset($email) && isset($password)) {
-			$query = "INSERT INTO users_awaiting_moderation
+			$query = "INSERT INTO user_accounts
 					(user_name, 
-					email, 
-					password)
+					user_email, 
+					user_password,
+					user_approved)
 			VALUES ('$user_name',
 					'$email', 
-					'$password')";
+					'$password',
+					'$approved')";
 			//creates a string that displays if SQL query is successful or not
 			if($conn->query($query) === TRUE)
 			{

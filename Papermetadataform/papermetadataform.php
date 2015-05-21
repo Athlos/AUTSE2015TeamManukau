@@ -10,12 +10,29 @@
 		</style>
 </head>
 <body>
+	<?php
+		$sql = "SELECT paper_name from approved_papers";
+		include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
+		$result = $conn->query($sql);
+		$options = "";
+		if($result->num_rows > 0)
+		{
+			while($row = $result->fetch_assoc())
+			{
+				$options.= '<option>' . $row["paper_name"] . '</option>';
+			}
+		}
+		else
+		{
+			echo "empty";
+		}
+	?>
 	<h1>Paper Meta-data Form </h1>
 	<form action = "addpapermetadata.php" method = "GET">
 	<table id="table-meta-data-form" border="1px">
 		<tr>
 			<td>Paper Name:</td>
-			<td><input type="text" name="paper_name"></td>
+			<td><select name ="papers" size= "1px"><?php echo $options; ?></select></td>
 		</tr>
 		<!--methodology and method-->
 		<tr>
