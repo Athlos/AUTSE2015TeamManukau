@@ -85,15 +85,13 @@
 			
 			//insert data into the database
 			if(isset($user_name) && isset($email) && isset($password)) {
-			$query = "INSERT INTO user_accounts
+			$query = "INSERT INTO unapproved_user_accounts
 					(user_name, 
 					user_email, 
-					user_password,
-					user_approved)
+					user_password)
 			VALUES ('$user_name',
 					'$email', 
-					'$password',
-					'$approved')";
+					'$password')";
 			//creates a string that displays if SQL query is successful or not
 			if($conn->query($query) === TRUE)
 			{

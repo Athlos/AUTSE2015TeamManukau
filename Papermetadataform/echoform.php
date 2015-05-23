@@ -1,0 +1,19 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<style type="text/css">
+			<style type="text/css">
+			#table-meta-data-form {
+			}
+			#td-1 {
+			}
+	</style>
+</head>
+<body>
+	<?php
+		session_start();
+		echo $_SESSION["paper_name"];
+		session_destroy();
+	?>
+</body>
+</html>

@@ -14,15 +14,14 @@
 	<a href="moderate papers/view_papers.php">Moderate Papers</a><br>
 	<a href="Remove accepted papers and reject or accept proposed papers/SEStatus.php">Accept or Reject Papers</a><br>
 	<a href="Remove accepted papers and reject or accept proposed papers/SERemoveApprovedPaper.php">Remove Approved Paper</a><br>
-	<br><a href="Usersawaitingapproval/usersawaitingapproval.php">View Users</a><br>
-	<label>Does not select actual papers</label>
+	<br><a href="Usersawaitingapproval/usersawaitingapproval.php">Approve Users</a><br>
 	<br><a href="Papermetadataform/papermetadataform.php">Add paper meta data</a><br>
 	
 	<br><a href="displayPaper.php">Display PDF</a><br>
 	<br><a href="redirectToWebPage.php">Redirect</a><br>
 	
 	<br><a href="Searching/SearchForm.php">Search Paper</a><br>
-
+	<br><a href="selectapprovedpapers.php">select approved papers</a><br>
 </form>
 </body>
 </html> 
