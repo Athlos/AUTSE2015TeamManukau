@@ -85,6 +85,16 @@
 			<td>Research Participants:</td>
 			<td><input type="text" name="research_participants"></td>
 		</tr>
+			<td>Paper Authors (separate by comma):</td>
+			<td><input type="text" name="paper_authors"></td>
+		<tr>
+			<td>Paper Year:</td>
+			<td><input type="date" name="paper_year"></td>
+		</tr>
+		<tr>
+			<td>Paper Journal Name:</td>
+			<td><input type="text" name="paper_journal_name"></td>
+		</tr>
 		</table>
 		<input type="submit" value="Submit">
 	</form>

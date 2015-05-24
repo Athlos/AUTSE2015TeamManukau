@@ -53,6 +53,19 @@ CREATE TABLE IF NOT EXISTS `papers_awaiting_removal` (
 -- Data exporting was unselected.
 
 
+-- Dumping structure for table test.paper_bibliography_info
+CREATE TABLE IF NOT EXISTS `paper_bibliography_info` (
+  `paper_name_bibliography` varchar(255) NOT NULL,
+  `paper_author` varchar(255) NOT NULL,
+  `paper_year` datetime NOT NULL,
+  `paper_journal_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`paper_name_bibliography`),
+  CONSTRAINT `paper_bibliography_info_approved_papers` FOREIGN KEY (`paper_name_bibliography`) REFERENCES `approved_papers` (`paper_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Data exporting was unselected.
+
+
 -- Dumping structure for table test.paper_credibility_and_confidence_rating
 CREATE TABLE IF NOT EXISTS `paper_credibility_and_confidence_rating` (
   `paper_name_rating` varchar(255) NOT NULL,
@@ -62,8 +75,7 @@ CREATE TABLE IF NOT EXISTS `paper_credibility_and_confidence_rating` (
   `paper_confidence_level` int(1) NOT NULL,
   `paper_confidence_reason` varchar(12) NOT NULL,
   `paper_confidence_rater` varchar(255) NOT NULL,
-  PRIMARY KEY (`paper_name_rating`),
-  CONSTRAINT `approved_papers_paper_credibility_and_confidence_rating` FOREIGN KEY (`paper_name_rating`) REFERENCES `approved_papers` (`paper_name`)
+  PRIMARY KEY (`paper_name_rating`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.

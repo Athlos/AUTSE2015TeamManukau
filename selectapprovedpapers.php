@@ -13,7 +13,7 @@
 <body>
 	<?php
 		include("DatabaseLogin.php");
-		$query = "Select * from approved_papers";
+		$query = "Select * from unapproved_papers";
 		$results = mysqli_query($conn,$query);
 
 		echo "<table wdith ='100%' border = '1'>";
