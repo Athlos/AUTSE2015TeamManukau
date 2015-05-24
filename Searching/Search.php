@@ -5,6 +5,30 @@
 </head>
 <body>
 	<?php
+	
+	
+	
+	
+		if ($_GET["search"] == "Advanced"){
+			echo $_GET["search"];
+			if (isset ($_GET["methodology"])){
+			echo $_GET["methodology"];
+		} else echo "methodology Is Incorrect Data Type"."<br>";
+		
+		if (isset ($_GET["method"])){
+			echo $_GET["method"];
+		} else echo "method Is Incorrect Data Type"."<br>";
+		
+		if (isset ($_GET["group"])){
+			echo $_GET["group"];
+		} else echo "group Is Incorrect Data Type"."<br>";
+		
+		if (isset ($_GET["sort"])){
+			echo $_GET["sort"];
+		} else echo "sort Is Incorrect Data Type"."<br>";
+		} 
+	
+	
 		//Here we will add a paper to a submitted database, awaiting moderation
 		
 	//This file will log you into the database automatically
@@ -23,6 +47,7 @@
 		$query = "SELECT * FROM approved_papers WHERE paper_name LIKE '%$search%'";
 		
 		$result = $conn->query($query);
+		
 	//show results 
 	
 	$row = mysqli_fetch_row($result);
@@ -47,7 +72,7 @@
 		
 		<label><?php echo $row[0]?><name = "display"> </label><br>
 		<label>Click <name = "display"> </label>
-		<a href="<?php echo $row[0]?>">Here</a><br>
+		<a href="<?php echo $row[3]?>">Here</a><br>
 		<label>Methodology : <name = "display"> </label><br>
 		<label>Bibliography : <name = "display"> </label><br>
 		<label>Research Question : <name = "display"> </label><br>

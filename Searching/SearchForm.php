@@ -5,13 +5,18 @@
 </head>
 <body>
 	<h1>Search A Paper</h1>
-	<!--This is a basic form to apply to remove your paper from the database, requires 2 fields, URL and name of submitter,
-	and can include a comment from the user as to why-->
 	<form action = "Search.php" method = "GET" >
 	<label>Search : <input type = "text" name = "search"> </label>
-	<!--This will submit to the RemovePaper.php file, which will then add to a database -->
+	
+	<input type="hidden" name="search" value="Simple">
+	
 	<input type = "submit" value = "Search">
 	</form>
 	
+	<form action="AdvancedSearchForm.php">
+    <input type="submit" value="ADVANCED SEARCH">
+	</form>
+	
+	<a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
 </body>
 </html> 
