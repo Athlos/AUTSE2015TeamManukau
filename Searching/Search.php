@@ -62,6 +62,7 @@
 		if($AdvancedSearch && $sort != "") {
 			$methodologyQuery = $methodologyQuery . " ORDER BY '$sort'";
 		} 
+		
 
 		$select = "SELECT * 
 		FROM approved_papers ";
@@ -70,28 +71,60 @@
 		INNER JOIN paper_methodology_and_method 
 		ON approved_papers.paper_name=paper_methodology_and_method.paper_name_method";
 		
-		$methodologyQuery = $methodologyQuery . " ORDER BY '$sort'";
 		
 		$query = $select . $join . $methodologyQuery;
 		
 		//echo $methodologyQuery;
-		//echo $query;
+		
 		$res = $conn->query($query);
 		
 	//show results 
 	
 	
 if($res != false) {
-	$rows = mysqli_fetch_row($res)
+	$row = mysqli_fetch_row($res)
 	or die("No Results Found");
 
 	echo "<table width='100%' border='1'>";
-	echo "<tr><th>Paper Name</th><th>Bibliography References</th>
-	<th>Research Level</th><th>Evidence Context</th><th>Benefits</th>
-	<th>Result</th><th>Implementation Integrity</th></tr>";
+	echo "<tr><th>Paper Name</th></tr>";
 
-	while ($rows) {
-		echo "<tr><td>{$rows[0]}</td>";
+	//<th>Bibliography References</th>
+	//<th>Research Level</th><th>Evidence Context</th><th>Benefits</th>
+	//<th>Result</th><th>Implementation Integrity</th>
+	
+	while ($row) {
+	
+	echo "<tr><td>";
+		?>
+
+		<!--This form goes to the rate the paper (confidence/quality process) -->
+		<form action = "paperDisplay.php" method = "GET" >
+		
+		<!--hidden input field attached to every entry that contains the name of the paper so that the next form knows which button was clicked. -->
+		<input type="hidden" name="nameOfPaper" value=<?php echo $row[0]?>> 
+		
+		
+		<label><?php echo $row[0]?><name = "display"> </label><br>
+		<label>Click <name = "display"> </label>
+		<a href="<?php echo $row[3]?>">Here</a><br>
+		<label>Methodology : <name = "display"> </label><br>
+		<label>Bibliography : <name = "display"> </label><br>
+		<label>Research Question : <name = "display"> </label><br>
+		<label>Credibility Rating : <name = "display"> </label><br>
+		<label>Quality Rating: <name = "display"> </label><br>
+		
+		<input type = "submit" name = "goButton" value = "Go to">
+		
+		<!-- http://stackoverflow.com/questions/2680160/how-can-i-tell-which-button-was-clicked-in-a-php-form-submit SEND THIS TO A FORM THAT REDIRECTS TO EITHER FAVOURITE OR CONFIDENCE/QUALITY DEPENDING ON WHICH BUTTON WAS
+		CLICKED-->
+		</form>
+		
+		<?php
+		echo "</td></tr>";
+	$row = mysqli_fetch_row($res);
+	
+	
+/* 		echo "<tr><td>{$rows[0]}</td>";
 		echo "<td>{$rows[1]}</td>";
 		echo "<td>{$rows[2]}</td>";
 		echo "<td>{$rows[3]}</td>";
@@ -109,15 +142,14 @@ if($res != false) {
 		echo "<td>{$rows[13]}</td>";
 		echo "<td>{$rows[14]}</td>";
 		echo "<td>{$rows[15]}</td>";
-		echo "<td>{$rows[16]}</td></tr>";
-		if($rows[13] == $methodology) echo "wtf";
-		else echo "aaa";
+		echo "<td>{$rows[16]}</td></tr>"; */
+	
 		
-		$rows = mysqli_fetch_row($res);
+		
 	}
 	echo "</table>";
 } else echo "No Results Found";
-			
+/* 			
 		//This is the query string, holding the SQL command to use
 		//now() inputs the current date and time into the table
 		
@@ -165,7 +197,7 @@ if($res != false) {
 		<?php
 		echo "</td></tr>";
 		$row = mysqli_fetch_row($result);
-    } echo "</table>";
+    } echo "</table>"; */
 		//now we close the database
 		mysqli_close($conn);
 		
