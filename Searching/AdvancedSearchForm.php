@@ -12,11 +12,12 @@
 	<label>Search : <input type = "text" name = "search"> </label><br>
 	<br><br>
 	
-	<input type="hidden" name="search" value="Advanced">
+	<input type="hidden" name="searchType" value="Advanced">
 	
 	<label>Methodology :   </label>
 	<select name="methodology">
 	<!--This is hardcoded for now, should make it pull methodologies from the tables to select -->
+	<option></option>
 	<option>Scrum</option>
 	<option>XP</option>
 	<option>Kanban</option>
@@ -25,20 +26,24 @@
 	<label>Methods Used :   </label>
 	<select name = "method">
 	<!--This is hardcoded for now, should make it pull methods from the tables to select -->
+	<option></option>
 	<option>Small Group Testing</option>
 	<option>Large Group Testing</option>
 	<option>Focus Groups</option>
 	</select><p>
 	
+	<!-- does not work, removed for now
 	<label>Group By :   </label>
 	<select name="group">
-	<option>Methodology</option>
-	<option>Methods</option>
+	<option></option>
+	<option value="paper_methodology_and_method.paper_methodology_name">Methodology</option>
+	<option value="paper_methodology_and_method.paper_method_name">Methods</option>
 	</select><p>
-	
+	-->
 	<label>Sort By :   </label>
 	<select name="sort">
-	<option>Name</option>
+	<option></option>
+	<option value="approved_papers.paper_name">Name</option>
 	<option>Credibility</option>
 	<option>Quality</option>
 	</select><p>

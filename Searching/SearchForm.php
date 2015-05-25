@@ -8,7 +8,7 @@
 	<form action = "Search.php" method = "GET" >
 	<label>Search : <input type = "text" name = "search"> </label>
 	
-	<input type="hidden" name="search" value="Simple">
+	<input type="hidden" name="searchType" value="Simple">
 	
 	<input type = "submit" value = "Search">
 	</form>
