@@ -81,6 +81,12 @@
 	?>
 	
 	<br><a href="Temp.php">Go Back</a>
+
+	<pre>
+		<?php
+			print_r($_GET);
+		?>
+	</pre>
 	
 </body>
 </html>

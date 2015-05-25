@@ -22,7 +22,7 @@
  	if ($_GET['submit_btn']) {
 		// $num = $_GET['selectmenu']; // increment the value
 		$_SESSION["number"] = $_GET['selectmenu']; // update the session variable
-		header("location:moderate_paper.php"); // redirect to number.php
+		header("location:modify_form.php"); // redirect to number.php
 		echo $num;
  	}
 
@@ -39,30 +39,36 @@
 			background: black;
 			border: 10px;
 		}
+		#select_papers_title {
+			color: green;
+		}
+		#approved_papers_title {
+			/*Remove bottom margin*/
+			margin-bottom: 0;
+			text-align: center;
+		}
 		td {
 		}
 		body {
 			/*background-color: black;*/
-			color: red;
+			/*color: red;*/
 		}
 	</style>
 	<title></title>
 </head>
 <body>
 	<?php
-		// Query to display papers from the 'papers_awaiting_moderation' table
-		$sql_papers_awaiting_moderation = "SELECT * FROM submitted_papers";
 		// Query to display papers from 'approved_papers' table
 		$approved_papers = "SELECT * FROM approved_papers";
 	?>
-	<h3>Papers Awaiting Moderation:</h3>
+	<h3 id="select_papers_title">Select a paper to modify</h3>
 	<form name='form-awaiting-papers' method='get' action='<?php echo $_SERVER['PHP_SELF']; ?>'>
 	<!-- <?php echo $_SERVER['PHP_SELF']; ?> -->
-	<h5>Select a paper to moderate</h5>
+	<h3 id="approved_papers_title">Approved Papers:</h3>
 	<?php
 
-			$result = mysqli_query($conn, $sql_papers_awaiting_moderation);
-			echo "<SELECT name='selectmenu' size='10' id='select' style='width: 100%'>";		
+			$result = mysqli_query($conn, $approved_papers);
+			echo "<SELECT name='selectmenu' size='20' id='select' style='width: 100%'>";		
 			// Loop to get and echo the results as options
 			while ($row = $result->fetch_assoc()) {
 
@@ -84,33 +90,6 @@
 		echo "<input name='submit_btn' type='submit' value='Submit'>";
 
 	?>
-
-	</form>
-
-	<h3>Approved Papers</h3>
-	<form name='form-approved-papers' method='get' action='<?php echo $_SERVER['PHP_SELF']; ?>'>
-		<!-- <?php echo $_SERVER['PHP_SELF']; ?> -->
-		<?php
-				$result = mysqli_query($conn, $approved_papers);
-				echo "<SELECT name='selectmenu' size='10' id='select' style='width: 100%'>";		
-				// Loop to get and echo the results as options
-				while ($row = mysqli_fetch_assoc($result)) {
-				echo 
-				'<option value="'.$row["Submission_Date"].'">
-					<table>
-						<tr>
-							<th>Date Submitted:</th>
-							<td>'.$row["Submission_Date"].'</td>
-						</tr>
-						<tr>
-							<td>Submitted By:</td>					
-							<td>'.$row["Submitted_By"].'</td>
-						</tr>
-					</table>
-				</option>';
-			}
-		echo "</SELECT>";			
-		?>
 	</form>
 
 	<?php
@@ -121,10 +100,10 @@
 <!-- Debug -->
 <pre>
 	<?php
-		if ($_GET) {
-			echo 'Contents of the $_GET array: <br>';
-			print_r($_GET);
-		}
+		//if ($_GET) {
+			//echo 'Contents of the $_GET array: <br>';
+			//print_r($_GET);
+		//}
 	?>
 </pre>
 <a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>

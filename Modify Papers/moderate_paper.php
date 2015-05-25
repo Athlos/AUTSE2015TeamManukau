@@ -47,17 +47,17 @@
 <form name="status_form" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 <!-- <?php echo $_SERVER['PHP_SELF']; ?> -->
 	<?php
-		// Query to display all fields from the 'submitted_papers' table
-		$sql = "SELECT * FROM submitted_papers WHERE Submission_Date LIKE '$num%'";
-		// Query to delete a the selected record from the 'submitted_papers' table
-		$sql_delete_row = "DELETE FROM submitted_papers WHERE Submission_Date ='$num';";
+		// Query to display all fields from the 'papers_awaiting_moderation' table
+		$sql = "SELECT * FROM papers_awaiting_moderation WHERE Submission_Date LIKE '$num%'";
+		// Query to delete a the selected record from the 'papers_awaiting_moderation' table
+		$sql_delete_row = "DELETE FROM papers_awaiting_moderation WHERE Submission_Date ='$num';";
 		// Query to insert a record of approved papers into the 'approved_papers' table
 		$sql_add_to_approved_papers = "INSERT INTO approved_papers (paper_name, Submission_Date, Submitted_By, Paper_URL) 
 				SELECT Paper_URL, Submission_Date, Submitted_By, Paper_URL 
-				FROM submitted_papers WHERE Submission_Date='$num';";
+				FROM papers_awaiting_moderation WHERE Submission_Date='$num';";
 		// 
 		$result = $conn->query($sql);		
-		// Display data from the 'submitted_papers' table
+		// Display data from the 'papers_awaiting_moderation' table
 		if($result->num_rows > 0 && $num != null) {
 			// Create table rows and headers
 			echo "

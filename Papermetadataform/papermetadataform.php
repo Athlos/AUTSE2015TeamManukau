@@ -9,22 +9,36 @@
 			}
 	</style>
 	<?php
-			session_start();
+			// session_start();
 	?>
 </head>
 <body>
+	<?php
+		// $_SESSION["paper_name"] = $_GET["selected_paper_name"];
+		// $paper_name = $_SESSION["paper_name"];
+		// echo $paper_name;
+		$sql = "SELECT paper_name FROM approved_papers";
+		include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
+		$result = $conn->query($sql);
+		$options = "";
+		if($result->num_rows > 0)
+		{
+			while($row = $result->fetch_assoc())
+			{
+				$options.= '<option>' . $row["paper_name"] . '</option>';
+			}
+		}
+		else
+		{
+			echo "empty";
+		}			
+	?>
 	<h1>Paper Meta-data Form </h1>
 	<form action = "addpapermetadata.php" method = "GET">
 		<table id="table-meta-data-form" border="1px">
 		<tr>
 			<td>Paper Name:</td>
-			<td>
-				<?php
-					$_SESSION["paper_name"] = $_GET["selected_paper_name"];
-					$paper_name = $_SESSION["paper_name"];
-					echo $paper_name;
-				?>
-			</td>
+			<td><select name ="paper_name" size= "1px"><?php echo $options; ?></select></td>
 		</tr>
 		<!--methodology and method-->
 		<tr>
@@ -98,5 +112,10 @@
 		</table>
 		<input type="submit" value="Submit">
 	</form>
+	<pre>
+		<?php
+			print_r($_GET);
+		?>
+	</pre>
 </body>
 </html>

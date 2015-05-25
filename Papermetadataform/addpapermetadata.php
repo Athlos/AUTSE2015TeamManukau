@@ -9,9 +9,9 @@
 			//this php script will try to add meta data to the respective tables
 			//checking the values from papermetadataform.php if the values entered are not
 			//usable or left blank the value in the table will be "empty now will edit later"
-			if(isset ($_SESSION["paper_name"]))
+			if(isset ($_GET["paper_name"]))
 			{
-				$paper_name = $_SESSION["paper_name"];
+				$paper_name = $_GET["paper_name"];
 			}
 			if(isset ($_GET["methodology_name"]) && $_GET["methodology_name"] != "")
 			{
@@ -192,7 +192,7 @@
 				echo "<br> Could not add paper to approved papers list";
 			}
 			//destroy session
-			session_destroy();
+			// session_destroy();
 			//close connection
 			mysqli_close($conn);
 		?>

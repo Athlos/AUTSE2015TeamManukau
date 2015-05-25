@@ -8,6 +8,8 @@
 	
 	<!--This is a basic form to apply to add your paper to the database, requires 2 fields, URL and name of submitter-->
 	<form action = "AddPaper.php" method = "GET" >
+	<label>Paper Name: <input type="text" name="name"></label>
+	<br>
 	<label>Link: <input type = "text" name = "link"> </label>
 	<br/>
 	<label>Person Submitting: <input type = "text" name = "submitter"> </label>

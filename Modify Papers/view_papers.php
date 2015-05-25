@@ -51,7 +51,7 @@
 <body>
 	<?php
 		// Query to display papers from the 'papers_awaiting_moderation' table
-		$sql_papers_awaiting_moderation = "SELECT * FROM submitted_papers";
+		$sql_papers_awaiting_moderation = "SELECT * FROM papers_awaiting_moderation";
 		// Query to display papers from 'approved_papers' table
 		$approved_papers = "SELECT * FROM approved_papers";
 	?>
@@ -62,7 +62,7 @@
 	<?php
 
 			$result = mysqli_query($conn, $sql_papers_awaiting_moderation);
-			echo "<SELECT name='selectmenu' size='10' id='select' style='width: 100%'>";		
+			echo "<SELECT name='selectmenu' size='20' id='select' style='width: 100%'>";		
 			// Loop to get and echo the results as options
 			while ($row = $result->fetch_assoc()) {
 
@@ -85,6 +85,9 @@
 
 	?>
 
+
+
+
 	</form>
 
 	<h3>Approved Papers</h3>
@@ -92,7 +95,7 @@
 		<!-- <?php echo $_SERVER['PHP_SELF']; ?> -->
 		<?php
 				$result = mysqli_query($conn, $approved_papers);
-				echo "<SELECT name='selectmenu' size='10' id='select' style='width: 100%'>";		
+				echo "<SELECT name='selectmenu' size='20' id='select' style='width: 100%'>";		
 				// Loop to get and echo the results as options
 				while ($row = mysqli_fetch_assoc($result)) {
 				echo 
@@ -121,10 +124,10 @@
 <!-- Debug -->
 <pre>
 	<?php
-		if ($_GET) {
-			echo 'Contents of the $_GET array: <br>';
-			print_r($_GET);
-		}
+		//if ($_GET) {
+			//echo 'Contents of the $_GET array: <br>';
+			//print_r($_GET);
+		//}
 	?>
 </pre>
 <a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
