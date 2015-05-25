@@ -62,7 +62,7 @@
 				  `paper_confidence_reason` varchar(12) NOT NULL,
 				  `paper_confidence_rater` varchar(255) NOT NULL,
 				  PRIMARY KEY (`paper_name_rating`),
-				  CONSTRAINT `approved_papers_paper_credibility_and_confidence_rating` FOREIGN KEY (`paper_name_rating`) REFERENCES `approved_papers` (`paper_name`)
+				  CONSTRAINT `approved_papers_paper_credibility_and_confidence_rating` FOREIGN KEY (`paper_name_rating`) REFERENCES `approved_papers` (`paper_name`) ON DELETE CASCADE ON UPDATE CASCADE
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 		
 		//This executes the string we have made, and returns if it was able to be executed
@@ -78,7 +78,7 @@
 				  `paper_evidence_result` varchar(255) NOT NULL,
 				  `paper_evidence_method_implemention_integrity` varchar(255) NOT NULL,
 				  PRIMARY KEY (`paper_name_evidence`),
-				  CONSTRAINT `approved_papers_paper_evidence_source_and_item` FOREIGN KEY (`paper_name_evidence`) REFERENCES `approved_papers` (`paper_name`)
+				  CONSTRAINT `approved_papers_paper_evidence_source_and_item` FOREIGN KEY (`paper_name_evidence`) REFERENCES `approved_papers` (`paper_name`) ON DELETE CASCADE ON UPDATE CASCADE
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 		
 		//This executes the string we have made, and returns if it was able to be executed
@@ -92,7 +92,7 @@
 				  `paper_method_name` varchar(255) NOT NULL,
 				  `paper_method_description` varchar(255) NOT NULL,
 				  PRIMARY KEY (`paper_name_method`),
-				  CONSTRAINT `approved_papers_paper_methodology_and_method` FOREIGN KEY (`paper_name_method`) REFERENCES `approved_papers` (`paper_name`)
+				  CONSTRAINT `approved_papers_paper_methodology_and_method` FOREIGN KEY (`paper_name_method`) REFERENCES `approved_papers` (`paper_name`) ON DELETE CASCADE ON UPDATE CASCADE
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 				
 		//This executes the string we have made, and returns if it was able to be executed
@@ -106,7 +106,7 @@
 			  `paper_research_metrics` varchar(255) NOT NULL,
 			  `paper_research_participants` varchar(255) NOT NULL,
 			  PRIMARY KEY (`paper_name_research`),
-			  CONSTRAINT `approved_papers_paper_research` FOREIGN KEY (`paper_name_research`) REFERENCES `approved_papers` (`paper_name`)
+			  CONSTRAINT `approved_papers_paper_research` FOREIGN KEY (`paper_name_research`) REFERENCES `approved_papers` (`paper_name`) ON DELETE CASCADE ON UPDATE CASCADE
 			) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 				
 		//This executes the string we have made, and returns if it was able to be executed

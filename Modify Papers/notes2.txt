@@ -1,0 +1,35 @@
+Modify Paper Name:
+modify_paper_name
+modify_paper_url
+
+Paper Credibility Level:
+modify_cred_level
+modify_cred_reason
+modify_cred_rater
+modify_conf_level
+modify_conf_reason
+modify_conf_rater
+
+
+Evidence and Source Item:
+modify_src_bib_ref
+modify_src_research_lvl
+modify_evidence_context
+modify_evidence_outcomes
+modify_evidence_result
+modify_evidence_meth_imp_integrity
+
+Paper Methodology Name and Method Name:
+modify_methodology_name
+modify_methodology_desc
+modify_method_name
+modify_method_desc
+
+Paper Research:
+modify_research_q
+modify_research_meth
+modify_research_metrics
+modify_research_participants
+
+
+https://www.youtube.com/watch?v=nm8y9gSi7O8
