@@ -13,6 +13,26 @@
 			{
 				$paper_name = $_GET["paper_name"];
 			}
+			else
+			{
+				$paper_name = "default_name";
+			}
+			if(isset ($_GET["paper_url"]))
+			{
+				$paper_url = $_GET["paper_url"];
+			}
+			else
+			{
+				$paper_url = "default_url";
+			}
+			if(isset ($_GET["paper_submitter"]))
+			{
+				$paper_submitter = $_GET["paper_submitter"];
+			}
+			else
+			{
+				$paper_submitter = "default_submitter";
+			}
 			if(isset ($_GET["methodology_name"]) && $_GET["methodology_name"] != "")
 			{
 				$methodology_name = $_GET["methodology_name"];
@@ -40,13 +60,6 @@
 			}
 			else {
 				$method_description = "empty now will edit later";
-			}
-			if(isset ($_GET["evidence_source_bibliography_references"]) && $_GET["evidence_source_bibliography_references"] != "")
-			{
-				$evidence_source_bibliography_references = $_GET["evidence_source_bibliography_references"];
-			}
-			else {
-				$evidence_source_bibliography_references = "empty now will edit later";
 			}
 			if(isset ($_GET["evidence_source_research_level"]) && $_GET["evidence_source_research_level"] != "")
 			{
@@ -149,42 +162,91 @@
 			$evidenceQuery = "INSERT INTO paper_evidence_source_and_item(paper_name_evidence,paper_evidence_source_bibliography_references,
 			paper_evidence_source_research_level,paper_evidence_context,paper_evidence_benefit_outcomes,paper_evidence_result,
 			paper_evidence_method_implemention_integrity)
-			VALUES ('$paper_name','$evidence_source_bibliography_references','$evidence_source_research_level','$evidence_context',
+			VALUES ('$paper_name','$evidence_source_research_level','$evidence_context',
+			'$evidence_benefit_outcomes','$evidence_result','$evidence_method_implemention_integrity')";
+			
+			$evidenceQuery = "INSERT INTO paper_evidence_source_and_item (paper_name_evidence, paper_evidence_source_research_level, 
+			paper_evidence_context, paper_evidence_benefit_outcomes, paper_evidence_result,paper_evidence_method_implemention_integrity) 
+			VALUES ('$paper_name','$evidence_source_research_level','$evidence_context',
 			'$evidence_benefit_outcomes','$evidence_result','$evidence_method_implemention_integrity')";
 			//research table query
 			$reserachQuery = "INSERT INTO paper_research(paper_name_research,paper_research_question,paper_research_method,
 			paper_research_metrics,	paper_research_participants)
 			VALUES ('$paper_name','$research_question','$research_method','$research_metrics','$research_participants')";
 			//bibliography table query
-			$bibliographyQuery = "INSERT INTO paper_bibliography = (paper_name_bibliography, paper_author, paper_year, paper_journal_name) 
+			$bibliographyQuery = "INSERT INTO paper_bibliography_info  (paper_name_bibliography, paper_author, paper_year, paper_journal_name) 
 			VALUES('$paper_name','$paper_authors','$paper_year','$paper_journal_name')";
+			//rating table query needed for demo			
+			
+			$ratingQuery = "INSERT INTO paper_rating (paper_rating_date, paper_name,  paper_credibility_level, 
+			paper_credibility_reason, paper_confidence_level, paper_confidence_reason, rater, paper_average_credibility, 
+			paper_average_confidence) 
+			VALUES ('now()', '', '', '', '', '', '', 'NULL', 'NULL')";
+			
+			
 			//selects the paper from the unapproved paper list
 			$selectUnapprovedPaperQuery = "SELECT * FROM unapproved_papers WHERE paper_name = '$paper_name'";
 			//executes the query
-			$result = mysqli_query($conn, $selectUnapprovedPaperQuery)
-			or die("cannot select info from unapproved papers table");
+			//$result = mysqli_query($conn, $selectUnapprovedPaperQuery)
+			//or die("cannot select info from unapproved papers table");
 			//saves the results to a row array
-			$row = mysqli_fetch_row($result);
+			//$row = mysqli_fetch_row($result);
 			//enters the info into the add to approve papers query
-			while($row) 
-			{
-				$addToApproved = "INSERT INTO approved_papers (paper_name,Submission_Date,Submitted_By,Paper_URL, paper_has_metadata)
-				VALUES
-				('$paper_name','$row[1]','$row[2]','$row[3]', '1')";
-				$row = mysqli_fetch_row($result);
-			}			
-			echo $addToApproved;
+			//while($row) 
+			//{
+				//$addToApproved = "INSERT INTO approved_papers (paper_name,Submission_Date,Submitted_By,Paper_URL, paper_has_metadata)
+				//VALUES
+				//('$paper_name','$row[1]','$row[2]','$row[3]')";
+				//$row = mysqli_fetch_row($result);
+			//}		
+			$addToApproved = "INSERT INTO approved_papers (paper_name,Submission_Date,Submitted_By,Paper_URL)
+							VALUES
+							('$paper_name','now()','$paper_submitter','$paper_url')";
 			if($conn->query($addToApproved) === TRUE)
 			{
 				echo "<br> successfully added the paper to the approved papers list";
-				if (($conn->query($methodologyQuery) === TRUE)&&($conn->query($evidenceQuery) === TRUE)&&
-				($conn->query($reserachQuery) === TRUE) && $conn->query($bibliographyQuery))
+				if (($conn->query($methodologyQuery) === TRUE))
 				{
-					echo "<br> successfully added the meta data for the paper";
+					echo "<br>method meta data inserted successfully";
 				}
 				else
 				{
-					echo "<br> Could not add meta-data for the paper";
+					echo "<br>method meta data not inserted successfully";
+				}
+				if($conn->query($evidenceQuery) === TRUE)
+				{
+					echo "<br> evidence meta data inserted successfully";
+					
+				}
+				else
+				{
+					echo "<br> evidence meta data not inserted successfully";
+					echo $evidenceQuery;
+				}
+				if($conn->query($reserachQuery) === TRUE)
+				{
+					echo "<br> research meta data inserted successfully";
+				}
+				else
+				{
+					echo "<br> research meta data not inserted successfully";
+				}
+				if($conn->query($ratingQuery) === TRUE)
+				{
+					echo "<br> rating meta data inserted successfully";
+					
+				}
+				else
+				{
+					echo "<br> rating meta data not inserted successfully";
+				}
+				if($conn->query($bibliographyQuery) === TRUE)
+				{
+					echo "<br> bibliography meta data inserted successfully";
+				}
+				else
+				{
+					echo "<br> bibliography meta data not inserted successfully";
 				}
 			}
 			else
