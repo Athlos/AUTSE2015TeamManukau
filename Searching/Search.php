@@ -39,6 +39,9 @@
 	//This file will log you into the database automatically
 	include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
 	
+	
+	
+	
 		if($AdvancedSearch && $methodology != "") {
 			$methodologyQuery = " WHERE paper_methodology_and_method.paper_methodology_name='$methodology'";
 		} else $methodologyQuery = "";
@@ -58,43 +61,103 @@
 		if($AdvancedSearch && $group != "") {
 			$methodologyQuery = $methodologyQuery . " GROUP BY '$group'";
 		} 
-		
+		$order = "";
 		if($AdvancedSearch && $sort != "") {
-			$methodologyQuery = $methodologyQuery . " ORDER BY '$sort'";
+			//echo "|".$sort."|";
+			if($sort == "Name")
+				$methodologyQuery = $methodologyQuery . " ORDER BY  approved_papers.paper_name";
+			if($sort == "Confidence")
+				$methodologyQuery = $methodologyQuery . " ORDER BY paper_rating.paper_average_confidence";
+			if($sort == "Credibility") {
+				$methodologyQuery = $methodologyQuery . " ORDER BY approved_papers.paper_name";
+				echo "|".$sort."|";
+				}
 		} 
+		//else echo "stuff";
 		
 
 		$select = "SELECT * 
-		FROM approved_papers ";
+		FROM approved_papers";
 		$join = " INNER JOIN paper_evidence_source_and_item 
 		ON approved_papers.paper_name=paper_evidence_source_and_item.paper_name_evidence
 		INNER JOIN paper_methodology_and_method 
-		ON approved_papers.paper_name=paper_methodology_and_method.paper_name_method";
+		ON approved_papers.paper_name=paper_methodology_and_method.paper_name_method
+		LEFT JOIN paper_rating
+		ON approved_papers.paper_name=paper_rating.paper_name 
+		INNER JOIN paper_research
+		ON approved_papers.paper_name=paper_research.paper_name_research";
 		
 		
-		$query = $select . $join . $methodologyQuery;
-		
+		$query = $select . $join . $methodologyQuery . ";";
+		$savedQuery = $query;
+		//echo $query;
 		//echo $methodologyQuery;
-		
+		//echo $savedQuery;
 		$res = $conn->query($query);
-		
 	//show results 
-	
+	$array = array();
 	
 if($res != false) {
 	$row = mysqli_fetch_row($res)
 	or die("No Results Found");
 
 	echo "<table width='100%' border='1'>";
-	echo "<tr><th>Paper Name</th></tr>";
+	echo "<tr><th>Paper Name</th><th>Paper Information</th></tr>";
 
 	//<th>Bibliography References</th>
 	//<th>Research Level</th><th>Evidence Context</th><th>Benefits</th>
 	//<th>Result</th><th>Implementation Integrity</th>
 	
+	
+	
+	
 	while ($row) {
 	
-	echo "<tr><td>";
+	//GET CREDIBILITY AND QUALITY RATINGS
+	$avgQuery = "SELECT AVG(paper_credibility_level) 
+	FROM paper_rating
+	WHERE paper_name='$row[0]'";
+	
+	$result = $conn->query($avgQuery);
+	
+	
+	if($result != false) {
+		$avgRow = mysqli_fetch_row($result)
+		or die("");
+		while ($avgRow) {
+			$averageCred = $avgRow[0];
+			$avgRow = mysqli_fetch_row($result);
+		}
+	} 
+	if(!isset($averageCred)) {
+		$averageCred = "No ratings Yet";
+	}
+	
+	$avgQuery = "SELECT AVG(paper_confidence_level) 
+			FROM paper_rating
+			WHERE paper_name='$row[0]'";
+	
+	$result = $conn->query($avgQuery);
+	
+	
+	if($result != false) {
+		$avgRow = mysqli_fetch_row($result)
+		or die("");
+		while ($avgRow) {
+			$averageQual = $avgRow[0];
+			$avgRow = mysqli_fetch_row($result);
+		}
+	} 
+	
+	if(!isset($averageQual)) {
+		$averageQual = "No ratings Yet";
+	}
+	
+	if(!in_array($row[0], $array)) {
+	
+	array_push($array, $row[0]);
+	
+	echo "<tr><td align='center'>";
 		?>
 
 		<!--This form goes to the rate the paper (confidence/quality process) -->
@@ -104,50 +167,31 @@ if($res != false) {
 		<input type="hidden" name="nameOfPaper" value=<?php echo $row[0]?>> 
 		
 		
-		<label><?php echo $row[0]?><name = "display"> </label><br>
+		<label align="center"><?php echo $row[0]?><name = "display"> </label><br>
+		<?php
+			echo "</td><td>";
+		?>
 		<label>Click <name = "display"> </label>
 		<a href="<?php echo $row[3]?>">Here</a><br>
-		<label>Methodology : <name = "display"> </label><br>
-		<label>Bibliography : <name = "display"> </label><br>
-		<label>Research Question : <name = "display"> </label><br>
-		<label>Credibility Rating : <name = "display"> </label><br>
-		<label>Quality Rating: <name = "display"> </label><br>
+		<label>Methodology : <?php echo $row[13]?><name = "display"> </label><br>
+		<label>Bibliography : <?php echo $row[6]?><name = "display"> </label><br>
+		<label>Research Question : <?php echo $row[27]?><name = "display"> </label><br>
+		<label>Credibility Rating : <?php echo $averageCred?><name = "display"> </label><br>
+		<label>Quality Rating: <?php echo $averageQual?><name = "display"> </label><br>
 		
-		<input type = "submit" name = "goButton" value = "Go to">
+		<input type = "submit" name = "goButton" value = "Rate Paper">
 		
 		<!-- http://stackoverflow.com/questions/2680160/how-can-i-tell-which-button-was-clicked-in-a-php-form-submit SEND THIS TO A FORM THAT REDIRECTS TO EITHER FAVOURITE OR CONFIDENCE/QUALITY DEPENDING ON WHICH BUTTON WAS
 		CLICKED-->
 		</form>
 		
 		<?php
+		
 		echo "</td></tr>";
+		}
 	$row = mysqli_fetch_row($res);
-	
-	
-/* 		echo "<tr><td>{$rows[0]}</td>";
-		echo "<td>{$rows[1]}</td>";
-		echo "<td>{$rows[2]}</td>";
-		echo "<td>{$rows[3]}</td>";
-		echo "<td>{$rows[4]}</td>";
-		
-		echo "<td>{$rows[5]}</td>";
-		echo "<td>{$rows[6]}</td>";
-		echo "<td>{$rows[7]}</td>";
-		echo "<td>{$rows[8]}</td>";
-		echo "<td>{$rows[9]}</td>";
-		echo "<td>{$rows[10]}</td>";
-		echo "<td>{$rows[11]}</td>";
-		
-		echo "<td>{$rows[12]}</td>";
-		echo "<td>{$rows[13]}</td>";
-		echo "<td>{$rows[14]}</td>";
-		echo "<td>{$rows[15]}</td>";
-		echo "<td>{$rows[16]}</td></tr>"; */
-	
-		
-		
-	}
-	echo "</table>";
+
+	} echo "</table>";
 } else echo "No Results Found";
 /* 			
 		//This is the query string, holding the SQL command to use
@@ -202,8 +246,15 @@ if($res != false) {
 		mysqli_close($conn);
 		
 		
-	?>
+		
+		if($AdvancedSearch) {
+	?> <br><a href="AdvancedSearchForm.php">Go Back</a><br> <?php
+		} else {  
+	?> <br><a href="SearchForm.php">Go Back</a><br> <?php } ?>
 	
-	<br><a href="SearchForm.php">Go Back</a><br>
+	<form action="saveSearch.php" method = "GET">
+			<input type="submit" value="Save Search">
+			<input type="hidden" name="query" value="<?php echo $savedQuery?>"> 
+		</form>
 </body>
 </html>

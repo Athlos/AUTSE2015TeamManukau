@@ -43,9 +43,7 @@
 	<label>Sort By :   </label>
 	<select name="sort">
 	<option></option>
-	<option value="approved_papers.paper_name">Name</option>
-	<option>Credibility</option>
-	<option>Quality</option>
+	<option>Name</option>
 	</select><p>
 
 	<br><input type = "submit" value = "Search">

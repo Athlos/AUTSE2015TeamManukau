@@ -47,13 +47,62 @@
 		//This is the query string, holding the SQL command to use
 		//now() inputs the current date and time into the table
 		
-		$query = "INSERT INTO paper_credibility_and_confidence_rating(paper_name,paper_credibility_level, paper_credibility_reason,paper_confidence_level,paper_confidence_reason,rater)
-		VALUES ('$name','$qalRating','$qalComment','$conRating','$conComment','user')";
+		$query = "INSERT INTO paper_rating
+		VALUES (now(), '$name','$qalRating','$qalComment','$conRating','$conComment','user','','')";
+		
+		
 		
 		//This executes the string we have made, and returns if it was able to be executed
 		if ($conn->query($query) === TRUE)
 			echo "New record created successfully";
 		else echo "New record failed to create";
+		
+		$avgQuery = "SELECT AVG(paper_credibility_level) 
+			FROM paper_rating
+			WHERE paper_name='$name'";
+	
+	$result = $conn->query($avgQuery);
+	
+	
+	if($result != false) {
+		$avgRow = mysqli_fetch_row($result)
+		or die("");
+		while ($avgRow) {
+			$averageCred = $avgRow[0];
+			$avgRow = mysqli_fetch_row($result);
+		}
+	} 
+	
+	
+	
+	$avgQuery = "UPDATE paper_rating
+		SET paper_average_credibility='$averageCred'
+		WHERE paper_name='$name';";
+		
+		
+	$conn->query($avgQuery);
+		
+		
+		$avgQuery = "SELECT AVG(paper_confidence_level) 
+			FROM paper_rating
+			WHERE paper_name='$name'";
+	
+	$result = $conn->query($avgQuery);
+	
+	
+	if($result != false) {
+		$avgRow = mysqli_fetch_row($result)
+		or die("");
+		while ($avgRow) {
+			$averageCred = $avgRow[0];
+			$avgRow = mysqli_fetch_row($result);
+		}
+	} 
+	$avgQuery = "UPDATE paper_rating
+		SET paper_average_confidence='$averageCred'
+		WHERE paper_name='$name';";
+		
+	$conn->query($avgQuery);
 		
 		//now we close the database
 		mysqli_close($conn);

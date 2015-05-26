@@ -69,7 +69,7 @@
 		<textarea rows="4" cols="50" maxlength="255" name = "commentQ">Write your comment here. It is capped at 255 characters. </textarea>
 	 </p>
 	 
-		<input type="submit" value="Reject">
+		<input type="submit" value="Submit">
 
 	</form>
 	
