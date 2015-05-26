@@ -65,6 +65,8 @@
 				  `paper_confidence_level` int(1) NOT NULL,
 				  `paper_confidence_reason` varchar(12) NOT NULL,
 				  `rater` varchar(255) NOT NULL,
+				  `paper_average_credibility` float DEFAULT NULL,
+				  `paper_average_confidence` float DEFAULT NULL,
 				  PRIMARY KEY (`paper_rating_date`)
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 		if ($conn->query($query) === FALSE)
@@ -78,7 +80,7 @@
 				  `paper_evidence_result` varchar(255) NOT NULL,
 				  `paper_evidence_method_implemention_integrity` varchar(255) NOT NULL,
 				  PRIMARY KEY (`paper_name_evidence`),
-				  CONSTRAINT `approved_papers_paper_evidence_source_and_item` FOREIGN KEY (`paper_name_evidence`) REFERENCES `approved_papers` (`paper_name`)
+				  CONSTRAINT `approved_papers_paper_evidence_source_and_item` FOREIGN KEY (`paper_name_evidence`) REFERENCES `approved_papers` (`paper_name`) ON DELETE CASCADE ON UPDATE CASCADE
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 		if ($conn->query($query) === FALSE)
 		echo "paper evidence source and item list failed to create";
@@ -90,20 +92,22 @@
 				  `paper_method_name` varchar(255) NOT NULL,
 				  `paper_method_description` varchar(255) NOT NULL,
 				  PRIMARY KEY (`paper_name_method`),
-				  CONSTRAINT `approved_papers_paper_methodology_and_method` FOREIGN KEY (`paper_name_method`) REFERENCES `approved_papers` (`paper_name`)
+				  CONSTRAINT `approved_papers_paper_methodology_and_method` FOREIGN KEY (`paper_name_method`) REFERENCES `approved_papers` (`paper_name`) ON DELETE CASCADE ON UPDATE CASCADE
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 		if ($conn->query($query) === FALSE)
-		echo "paper methodology and method list failed to create";
+		echo "paper methodology and method List failed to create";
 		
-		$query ="CREATE TABLE IF NOT EXISTS `paper_research` (
-				  `paper_name_research` varchar(255) NOT NULL,
-				  `paper_research_question` varchar(255) NOT NULL,
-				  `paper_research_method` varchar(255) NOT NULL,
-				  `paper_research_metrics` varchar(255) NOT NULL,
-				  `paper_research_participants` varchar(255) NOT NULL,
-				  PRIMARY KEY (`paper_name_research`),
-				  CONSTRAINT `approved_papers_paper_research` FOREIGN KEY (`paper_name_research`) REFERENCES `approved_papers` (`paper_name`)
-				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+		$query = "CREATE TABLE IF NOT EXISTS `paper_research` (
+			  `paper_name_research` varchar(255) NOT NULL,
+			  `paper_research_question` varchar(255) NOT NULL,
+			  `paper_research_method` varchar(255) NOT NULL,
+			  `paper_research_metrics` varchar(255) NOT NULL,
+			  `paper_research_participants` varchar(255) NOT NULL,
+			  PRIMARY KEY (`paper_name_research`),
+			  CONSTRAINT `approved_papers_paper_research` FOREIGN KEY (`paper_name_research`) REFERENCES `approved_papers` (`paper_name`) ON DELETE CASCADE ON UPDATE CASCADE
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+				
+		//This executes the string we have made, and returns if it was able to be executed
 		if ($conn->query($query) === FALSE)
 		echo "paper research list failed to create";
 		
