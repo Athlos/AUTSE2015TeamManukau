@@ -17,29 +17,39 @@
 		// $_SESSION["paper_name"] = $_GET["selected_paper_name"];
 		// $paper_name = $_SESSION["paper_name"];
 		// echo $paper_name;
-		$sql = "SELECT paper_name FROM approved_papers";
-		include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
-		$result = $conn->query($sql);
-		$options = "";
-		if($result->num_rows > 0)
-		{
-			while($row = $result->fetch_assoc())
-			{
-				$options.= '<option>' . $row["paper_name"] . '</option>';
-			}
-		}
-		else
-		{
-			echo "empty";
-		}			
+		//$sql = "SELECT paper_name FROM approved_papers";
+		//include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
+		//$result = $conn->query($sql);
+		//$options = "";
+		//if($result->num_rows > 0)
+		//{
+			//while($row = $result->fetch_assoc())
+			//{
+				//$options.= '<option>' . $row["paper_name"] . '</option>';
+			//}
+		//}
+		//else
+		//{
+			//echo "empty";
+		//}			
 	?>
 	<h1>Paper Meta-data Form </h1>
 	<form action = "addpapermetadata.php" method = "GET">
 		<table id="table-meta-data-form" border="1px">
 		<tr>
 			<td>Paper Name:</td>
-			<td><select name ="paper_name" size= "1px"><?php echo $options; ?></select></td>
+			<!--<td><select name ="paper_name" size= "1px"><?php echo $options; ?></select></td>-->
+			<td><input type="text" name="paper_name"></td>
 		</tr>
+		<tr>
+			<td>Paper URL</td>
+			<td><input type="text" name="paper_url"></td>
+		</tr>
+		<tr>
+			<td>Paper Submitter</td>
+			<td><input type="text" name="paper_submitter"></td>
+		</tr>
+		
 		<!--methodology and method-->
 		<tr>
 			<td>Methodology Name:</td>
@@ -58,10 +68,6 @@
 			<td><input type="text" name="method_description"></td>
 		</tr>
 		<!--Evidence source and context-->
-		<tr>
-			<td>Evidence Source Bibliography References:</td>
-			<td><input type="text" name="evidence_source_bibliography_references"></td>
-		</tr>
 		<tr>
 			<td>Evidence Source Research Level:</td>
 			<td><input type="text" name="evidence_source_research_level"></td>

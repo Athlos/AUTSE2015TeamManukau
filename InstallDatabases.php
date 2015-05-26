@@ -59,7 +59,6 @@
 		$query ="CREATE TABLE IF NOT EXISTS `paper_rating` (
 				  `paper_rating_date` datetime NOT NULL,
 				  `paper_name` varchar(255) NOT NULL,
-				  `paper_name_rating` varchar(255) NOT NULL,
 				  `paper_credibility_level` int(1) NOT NULL,
 				  `paper_credibility_reason` varchar(255) NOT NULL,
 				  `paper_confidence_level` int(1) NOT NULL,
