@@ -258,5 +258,6 @@
 			//close connection
 			mysqli_close($conn);
 		?>
+		<br><a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
 	</body>
 </html>

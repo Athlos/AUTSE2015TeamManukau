@@ -17,7 +17,7 @@
 	<br><a href="Usersawaitingapproval/usersawaitingapproval.php">Approve Users</a><br>
 	<br><a href="selectapprovedpapers.php">select approved papers</a><br>
 	<br><a href="Modify Papers">Modify Papers</a>
-	
+
 	<br><a href="displayPaper.php">Display PDF</a><br>
 	<br><a href="redirectToWebPage.php">Redirect</a><br>
 	
@@ -26,7 +26,7 @@
 	<br><a href="Searching/SearchForm.php">Search Paper</a><br>
 	
 	<br><a href="Favorites.php">View Favorites</a><br>
-	
+	<br><a href="Modify Papers">Modify Papers</a>
 </form>
 </body>
 </html> 

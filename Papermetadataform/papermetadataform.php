@@ -95,11 +95,20 @@
 		</tr>
 		<tr>
 			<td>Research Method:</td>
-			<td><input type="text" name="research_method"></td>
+			<td>
+	<select name="research_method">
+	<!--This is hardcoded for now, should make it pull methodologies from the tables to select -->
+	<option></option>
+	<option>Scrum</option>
+	<option>XP</option>
+	<option>Kanban</option>
+	</select> </td>
 		</tr>
 		<tr>
 			<td>Research Metrics:</td>
 			<td><input type="text" name="research_metrics"></td>
+			
+	
 		</tr>
 		<tr>
 			<td>Research Participants:</td>
