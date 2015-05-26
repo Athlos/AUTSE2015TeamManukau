@@ -53,7 +53,7 @@
 		$sql_delete_row = "DELETE FROM submitted_papers WHERE Submission_Date ='$num';";
 		// Query to insert a record of approved papers into the 'approved_papers' table
 		$sql_add_to_approved_papers = "INSERT INTO approved_papers (paper_name, Submission_Date, Submitted_By, Paper_URL) 
-				SELECT Paper_URL, Submission_Date, Submitted_By, Paper_URL 
+				SELECT paper_name, Submission_Date, Submitted_By, Paper_URL 
 				FROM submitted_papers WHERE Submission_Date='$num';";
 		// 
 		$result = $conn->query($sql);		
@@ -75,7 +75,11 @@
 		        <td>".$row["Submission_Date"]."</td>
 		    </tr>
 		    <tr>
+		    <tr>
 		        <th>Paper Name:</th>
+		        <td>".$row["paper_name"]."</td>
+		    </tr>		    
+		        <th>Paper URL:</th>
 		        <td><a target='_blank' href=".$row["Paper_URL"].">".$row["Paper_URL"]."</a></td>
 		    </tr>
 			";			

@@ -21,7 +21,6 @@ CREATE TABLE IF NOT EXISTS `approved_papers` (
   `Submission_Date` datetime NOT NULL,
   `Submitted_By` varchar(255) NOT NULL DEFAULT '0',
   `Paper_URL` varchar(255) NOT NULL DEFAULT '0',
-  `paper_has_metadata` int(1) NOT NULL,
   PRIMARY KEY (`paper_name`),
   UNIQUE KEY `paper_name` (`paper_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -66,32 +65,16 @@ CREATE TABLE IF NOT EXISTS `paper_bibliography_info` (
 -- Data exporting was unselected.
 
 
--- Dumping structure for table test.paper_credibility_and_confidence_rating
-CREATE TABLE IF NOT EXISTS `paper_credibility_and_confidence_rating` (
-  `paper_name_rating` varchar(255) NOT NULL,
-  `paper_credibility_level` int(1) NOT NULL,
-  `paper_credibility_reason` varchar(255) NOT NULL,
-  `paper_credibility_rater` varchar(12) NOT NULL,
-  `paper_confidence_level` int(1) NOT NULL,
-  `paper_confidence_reason` varchar(12) NOT NULL,
-  `paper_confidence_rater` varchar(255) NOT NULL,
-  PRIMARY KEY (`paper_name_rating`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Data exporting was unselected.
-
-
 -- Dumping structure for table test.paper_evidence_source_and_item
 CREATE TABLE IF NOT EXISTS `paper_evidence_source_and_item` (
   `paper_name_evidence` varchar(255) NOT NULL,
-  `paper_evidence_source_bibliography_references` varchar(255) NOT NULL,
   `paper_evidence_source_research_level` varchar(255) NOT NULL,
   `paper_evidence_context` varchar(255) NOT NULL,
   `paper_evidence_benefit_outcomes` varchar(255) NOT NULL,
   `paper_evidence_result` varchar(255) NOT NULL,
   `paper_evidence_method_implemention_integrity` varchar(255) NOT NULL,
   PRIMARY KEY (`paper_name_evidence`),
-  CONSTRAINT `approved_papers_paper_evidence_source_and_item` FOREIGN KEY (`paper_name_evidence`) REFERENCES `approved_papers` (`paper_name`)
+  CONSTRAINT `approved_papers_paper_evidence_source_and_item` FOREIGN KEY (`paper_name_evidence`) REFERENCES `approved_papers` (`paper_name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
@@ -105,7 +88,25 @@ CREATE TABLE IF NOT EXISTS `paper_methodology_and_method` (
   `paper_method_name` varchar(255) NOT NULL,
   `paper_method_description` varchar(255) NOT NULL,
   PRIMARY KEY (`paper_name_method`),
-  CONSTRAINT `approved_papers_paper_methodology_and_method` FOREIGN KEY (`paper_name_method`) REFERENCES `approved_papers` (`paper_name`)
+  CONSTRAINT `approved_papers_paper_methodology_and_method` FOREIGN KEY (`paper_name_method`) REFERENCES `approved_papers` (`paper_name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Data exporting was unselected.
+
+
+-- Dumping structure for table test.paper_rating
+CREATE TABLE IF NOT EXISTS `paper_rating` (
+  `paper_rating_date` datetime NOT NULL,
+  `paper_name` varchar(255) NOT NULL,
+  `paper_name_rating` varchar(255) NOT NULL,
+  `paper_credibility_level` int(1) NOT NULL,
+  `paper_credibility_reason` varchar(255) NOT NULL,
+  `paper_confidence_level` int(1) NOT NULL,
+  `paper_confidence_reason` varchar(12) NOT NULL,
+  `rater` varchar(255) NOT NULL,
+  `paper_average_credibility` float DEFAULT NULL,
+  `paper_average_confidence` float DEFAULT NULL,
+  PRIMARY KEY (`paper_rating_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
@@ -119,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `paper_research` (
   `paper_research_metrics` varchar(255) NOT NULL,
   `paper_research_participants` varchar(255) NOT NULL,
   PRIMARY KEY (`paper_name_research`),
-  CONSTRAINT `approved_papers_paper_research` FOREIGN KEY (`paper_name_research`) REFERENCES `approved_papers` (`paper_name`)
+  CONSTRAINT `approved_papers_paper_research` FOREIGN KEY (`paper_name_research`) REFERENCES `approved_papers` (`paper_name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
