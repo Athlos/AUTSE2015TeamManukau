@@ -74,7 +74,7 @@
 	</form>
 	
 	<form action = "favouritePaper.php" method = "GET">
-		<label>Until User accounts are created: <input type = "text" name = "user"> </label><br>
+		<label>Until User accounts are created: <input type = "hidden" name = "user" value = "test"> </label><br>
 		<input type="hidden" name="nameOfPaper" value=<?php echo $redirect?>> 
 		<input type = "submit" name = "favButton" value = "Favourite">
 	</form>

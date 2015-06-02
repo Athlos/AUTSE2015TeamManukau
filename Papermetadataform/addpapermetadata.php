@@ -106,6 +106,7 @@
 			if(isset ($_GET["research_method"]) && $_GET["research_method"] != "")
 			{
 				$research_method = $_GET["research_method"];
+				echo $research_method;
 			}
 			else {
 				$research_method = "empty now will edit later";
@@ -258,6 +259,6 @@
 			//close connection
 			mysqli_close($conn);
 		?>
-		<br><a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
+		<br><a href="http://autse2015.allalla.com/AUTSE2015TeamManukau/">Go Back</a><br>
 	</body>
 </html>

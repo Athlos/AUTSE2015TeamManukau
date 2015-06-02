@@ -23,10 +23,6 @@
 			echo "Table failed to print";
 		}
 		
-		$checkConn = @mysqli_connect('127.0.0.1','root','', 'test')
-		or die('Failed to connect to server');
-
-		
 		$query = "Select * from $user where paper_name = '$paperName'";
 		
 		$result = mysqli_query($conn, $query)
@@ -40,7 +36,6 @@
 			echo "You have already favourited this paper";
 			$alreadyThere = true;
 		}
-		mysqli_close($checkConn);
 		$query = "INSERT INTO $user(paper_name)
 		VALUES ('$paperName')";
 		if($alreadyThere == false)

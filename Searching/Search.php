@@ -1,4 +1,5 @@
 <html>
+<html>
 <head>
 	<meta http-equiv="content-type" content = "text/html; charset=utf-8"/>
 	<title>Results</title>
@@ -38,6 +39,16 @@
 		
 	//This file will log you into the database automatically
 	include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
+	
+	
+	//approved papers 0-3
+	//paper_evidence_source_and_item 4-9
+	//paper_methodology_and_method 10-14
+	//paper_rating 15-23
+	//paper_research 24-28
+	
+	
+	
 	
 	
 	
@@ -85,7 +96,9 @@
 		LEFT JOIN paper_rating
 		ON approved_papers.paper_name=paper_rating.paper_name 
 		INNER JOIN paper_research
-		ON approved_papers.paper_name=paper_research.paper_name_research";
+		ON approved_papers.paper_name=paper_research.paper_name_research
+		INNER JOIN paper_bibliography_info
+		ON approved_papers.paper_name=paper_bibliography_info.paper_name_bibliography";
 		
 		
 		$query = $select . $join . $methodologyQuery . ";";
@@ -102,7 +115,7 @@ if($res != false) {
 	or die("No Results Found");
 
 	echo "<table width='100%' border='1'>";
-	echo "<tr><th>Paper Name</th><th>Paper Information</th></tr>";
+	echo "<tr><th>Paper Name</th><th>Paper Information</th><th>Bibliography Info</th><th>Ratings</th><th>Research Information</th></tr>";
 
 	//<th>Bibliography References</th>
 	//<th>Research Level</th><th>Evidence Context</th><th>Benefits</th>
@@ -173,20 +186,35 @@ if($res != false) {
 		?>
 		<label>Click <name = "display"> </label>
 		<a href="<?php echo $row[3]?>">Here</a><br>
-		<label>Methodology : <?php echo $row[13]?><name = "display"> </label><br>
-		<label>Bibliography : <?php echo $row[6]?><name = "display"> </label><br>
-		<label>Research Question : <?php echo $row[27]?><name = "display"> </label><br>
+		<label>Methodology : <?php echo $row[11]?><name = "display"> </label><br>
+		<label>Method : <?php echo $row[13]?><name = "display"> </label><br>
+		
+		
+		
+		
+		
+		
+		<?php echo "</td><td>"; ?>
+		
+		<label>Author : <?php echo $row[30]?><name = "display"> </label><br>
+		<label>Date Of Publication : <?php echo $row[31]?><name = "display"> </label><br>
+		<label>Published In : <?php echo $row[32]?><name = "display"> </label><br>
+		
+		<?php echo "</td><td>"; ?>
+		
 		<label>Credibility Rating : <?php echo $averageCred?><name = "display"> </label><br>
 		<label>Quality Rating: <?php echo $averageQual?><name = "display"> </label><br>
-		
 		<input type = "submit" name = "goButton" value = "Rate Paper">
-		
 		<!-- http://stackoverflow.com/questions/2680160/how-can-i-tell-which-button-was-clicked-in-a-php-form-submit SEND THIS TO A FORM THAT REDIRECTS TO EITHER FAVOURITE OR CONFIDENCE/QUALITY DEPENDING ON WHICH BUTTON WAS
 		CLICKED-->
 		</form>
+		<?php echo "</td><td>"; ?>
+		
+		<label>Research Question : <?php echo $row[25]?><name = "display"> </label><br>
+		<label>Research Method : <?php echo $row[26]?><name = "display"> </label><br>
+		<label>Research Metrics : <?php echo $row[27]?><name = "display"> </label><br>
 		
 		<?php
-		
 		echo "</td></tr>";
 		}
 	$row = mysqli_fetch_row($res);
@@ -253,7 +281,7 @@ if($res != false) {
 	?> <br><a href="SearchForm.php">Go Back</a><br> <?php } ?>
 	
 	<form action="saveSearch.php" method = "GET">
-			<input type="submit" value="Save Search">
+			<!--<input type="submit" value="Save Search">-->
 			<input type="hidden" name="query" value="<?php echo $savedQuery?>"> 
 		</form>
 </body>

@@ -27,9 +27,9 @@
 	<select name = "method">
 	<!--This is hardcoded for now, should make it pull methods from the tables to select -->
 	<option></option>
-	<option>Small Group Testing</option>
-	<option>Large Group Testing</option>
-	<option>Focus Groups</option>
+			<option>Method A</option>
+			<option>Method B</option>
+			<option>Method C</option>
 	</select><p>
 	
 	<!-- does not work, removed for now

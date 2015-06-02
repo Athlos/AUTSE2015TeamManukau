@@ -66,7 +66,7 @@
 			</select></td>
 		</tr>
 		<tr>
-			<td>Practice Description:</td>
+			<td>Method Description:</td>
 			<td><input type="text" name="method_description"></td>
 		</tr>
 		<!--Evidence source and context-->
@@ -82,7 +82,7 @@
 			</select></td>
 		</tr>
 		<tr>
-			<td><h3>Evidence Context</h3></td>
+			<td><h2>Evidence Context</h2></td>
 		</tr>
 		<tr>
 			<td>What:</td>
@@ -137,11 +137,16 @@
 			<td>Research Participants:</td>
 			<td><input type="text" name="research_participants"></td>
 		</tr>
-		
+			<td>Paper Authors (separate by comma):</td>
+			<td><input type="text" name="paper_authors"></td>
 		<tr>
-			<td><h3>Bibliographic references</h3><td>
+			<td>Paper Year:</td>
+			<td><input type="date" name="paper_year"></td>
 		</tr>
-			<td>Paper Author</td><td>Paper Year</td><td>Paper Journal Name</td>
+		<tr>
+			<td>Paper Journal Name:</td>
+			<td><input type="text" name="paper_journal_name"></td>
+		</tr>
 		</table>
 		<input type="submit" value="Submit">
 	</form>

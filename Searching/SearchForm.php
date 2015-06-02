@@ -17,6 +17,6 @@
     <input type="submit" value="ADVANCED SEARCH">
 	</form>
 	
-	<a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
+	<a href="http://autse2015.allalla.com/AUTSE2015TeamManukau/">Go Back</a><br>
 </body>
 </html> 

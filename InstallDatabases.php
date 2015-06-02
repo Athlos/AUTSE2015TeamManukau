@@ -9,8 +9,7 @@
 		//Now we connect to the database, using the default login of 127.0.0.1 (which is localhost), root (default user), '' (default password is blank), 'test' (directory with out databases)
 		//this will throw an exception if the connection fails, if that is the case, please check you have your database in the right folder
 		
-		$conn = @mysqli_connect('127.0.0.1','root','', 'test')
-		or die('Failed to connect to server');
+		include("DatabaseLogin.php");
 	
 		//create approved papers list
 		$query = "CREATE TABLE IF NOT EXISTS `approved_papers` (

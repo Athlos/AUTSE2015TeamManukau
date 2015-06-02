@@ -110,6 +110,6 @@
 		
 	?>
 	
-	<br><a href="PaperDisplay.php">Go Back</a><br>
+	<br><a href="http://autse2015.allalla.com/AUTSE2015TeamManukau/Searching/SearchForm.php">Go Back</a><br>
 </body>
 </html>
