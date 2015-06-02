@@ -8,31 +8,8 @@
 			#td-1 {
 			}
 	</style>
-	<?php
-			// session_start();
-	?>
 </head>
 <body>
-	<?php
-		// $_SESSION["paper_name"] = $_GET["selected_paper_name"];
-		// $paper_name = $_SESSION["paper_name"];
-		// echo $paper_name;
-		//$sql = "SELECT paper_name FROM approved_papers";
-		//include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
-		//$result = $conn->query($sql);
-		//$options = "";
-		//if($result->num_rows > 0)
-		//{
-			//while($row = $result->fetch_assoc())
-			//{
-				//$options.= '<option>' . $row["paper_name"] . '</option>';
-			//}
-		//}
-		//else
-		//{
-			//echo "empty";
-		//}			
-	?>
 	<h1>Paper Meta-data Form </h1>
 	<form action = "addpapermetadata.php" method = "GET">
 		<table id="table-meta-data-form" border="1px">
@@ -58,7 +35,7 @@
 		</tr>
 		<tr>
 			<td>Practice Name:</td>
-			<td><select name="method_name">
+			<td><select name="practice_name">
 			<option></option>
 			<option>Method A</option>
 			<option>Method B</option>
@@ -67,7 +44,7 @@
 		</tr>
 		<tr>
 			<td>Practice Description:</td>
-			<td><input type="text" name="method_description"></td>
+			<td><input type="text" name="practice_description"></td>
 		</tr>
 		<!--Evidence source and context-->
 		<tr>
@@ -85,28 +62,28 @@
 			<td><h3>Evidence Context</h3></td>
 		</tr>
 		<tr>
-			<td>What:</td>
-			<td><input type="text" name="evidence_context_what"></td>
+			<td>Who:</td>
+			<td><input type="text" name="context_who"></td>
 		</tr>
 		<tr>
-			<td>Why:</td>
-			<td><input type="text" name="evidence_context_why"></td>
+			<td>What:</td>
+			<td><input type="text" name="context_what"></td>
 		</tr>
 		<tr>
 			<td>When:</td>
-			<td><input type="text" name="evidence_context_when"></td>
+			<td><input type="text" name="context_when"></td>
 		</tr>
 		<tr>
 			<td>Where:</td>
-			<td><input type="text" name="evidence_context_where"></td>
+			<td><input type="text" name="context_where"></td>
 		</tr>
 		<tr>
-			<td>Who:</td>
-			<td><input type="text" name="evidence_context_who"></td>
+			<td>Why:</td>
+			<td><input type="text" name="context_why"></td>
 		</tr>
 		<tr>
 			<td>How:</td>
-			<td><input type="text" name="evidence_context_how"></td>
+			<td><input type="text" name="context_how"></td>
 		</tr>
 		<tr>
 			<td>Evidence context benefit/outcome under test:</td>
@@ -145,10 +122,5 @@
 		</table>
 		<input type="submit" value="Submit">
 	</form>
-	<pre>
-		<?php
-			print_r($_GET);
-		?>
-	</pre>
 </body>
 </html>

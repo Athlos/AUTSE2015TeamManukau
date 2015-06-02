@@ -15,8 +15,6 @@
 		$query = "CREATE TABLE IF NOT EXISTS `approved_papers` (
 				  `paper_name` varchar(255) NOT NULL,
 				  `Submission_Date` datetime NOT NULL,
-				  `Submitted_By` varchar(255) NOT NULL DEFAULT '0',
-				  `Paper_URL` varchar(255) NOT NULL DEFAULT '0',
 				  PRIMARY KEY (`paper_name`),
 				  UNIQUE KEY `paper_name` (`paper_name`)
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
@@ -73,22 +71,36 @@
 		$query ="CREATE TABLE IF NOT EXISTS `paper_evidence_source_and_item` (
 				  `paper_name_evidence` varchar(255) NOT NULL,
 				  `paper_evidence_source_research_level` varchar(255) NOT NULL,
-				  `paper_evidence_context` varchar(255) NOT NULL,
 				  `paper_evidence_benefit_outcomes` varchar(255) NOT NULL,
 				  `paper_evidence_result` varchar(255) NOT NULL,
 				  `paper_evidence_method_implemention_integrity` varchar(255) NOT NULL,
 				  PRIMARY KEY (`paper_name_evidence`),
 				  CONSTRAINT `approved_papers_paper_evidence_source_and_item` FOREIGN KEY (`paper_name_evidence`) REFERENCES `approved_papers` (`paper_name`) ON DELETE CASCADE ON UPDATE CASCADE
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+				
 		if ($conn->query($query) === FALSE)
 		echo "paper evidence source and item list failed to create";
 		
+		$query = "CREATE TABLE IF NOT EXISTS `paper_context` (
+				  `paper_name_context` varchar(255) NOT NULL,
+				  `paper_context_who` varchar(255) NOT NULL,
+				  `paper_context_what` varchar(255) NOT NULL,
+				  `paper_context_when` varchar(255) NOT NULL,
+				  `paper_context_where` varchar(255) NOT NULL,
+				  `paper_context_why` varchar(255) NOT NULL,
+				  `paper_context_how` varchar(255) NOT NULL,
+				  PRIMARY KEY (`paper_name_context`)
+				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+				
+		if ($conn->query($query) === FALSE)
+		echo "paper context list failed to create";
+	
 		$query ="CREATE TABLE IF NOT EXISTS `paper_methodology_and_method` (
 				  `paper_name_method` varchar(255) NOT NULL,
 				  `paper_methodology_name` varchar(255) NOT NULL,
 				  `paper_methodology_description` varchar(255) NOT NULL,
-				  `paper_method_name` varchar(255) NOT NULL,
-				  `paper_method_description` varchar(255) NOT NULL,
+				  `paper_practice_name` varchar(255) NOT NULL,
+				  `paper_practice_description` varchar(255) NOT NULL,
 				  PRIMARY KEY (`paper_name_method`),
 				  CONSTRAINT `approved_papers_paper_methodology_and_method` FOREIGN KEY (`paper_name_method`) REFERENCES `approved_papers` (`paper_name`) ON DELETE CASCADE ON UPDATE CASCADE
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";

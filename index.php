@@ -26,7 +26,9 @@
 	<br><a href="Searching/SearchForm.php">Search Paper</a><br>
 	
 	<br><a href="Favorites.php">View Favorites</a><br>
-	<br><a href="Modify Papers">Modify Papers</a>
+	<br><a href="Modify Papers">Modify Papers</a><br>
+	
+	<br><a href="drop_tables.php">Drop All Tables</a>
 </form>
 </body>
 </html> 

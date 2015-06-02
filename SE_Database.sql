@@ -19,8 +19,6 @@ USE `test`;
 CREATE TABLE IF NOT EXISTS `approved_papers` (
   `paper_name` varchar(255) NOT NULL,
   `Submission_Date` datetime NOT NULL,
-  `Submitted_By` varchar(255) NOT NULL DEFAULT '0',
-  `Paper_URL` varchar(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`paper_name`),
   UNIQUE KEY `paper_name` (`paper_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -39,15 +37,25 @@ CREATE TABLE IF NOT EXISTS `approved_user_accounts` (
 -- Data exporting was unselected.
 
 
+-- Dumping structure for table test.papers_awaiting_moderation
+CREATE TABLE IF NOT EXISTS `papers_awaiting_moderation` (
+  `Submission_Date` datetime NOT NULL,
+  `Submitted_By` varchar(255) NOT NULL DEFAULT '0',
+  `Paper_URL` varchar(255) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`Submission_Date`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Data exporting was unselected.
+
+
 -- Dumping structure for table test.papers_awaiting_removal
 CREATE TABLE IF NOT EXISTS `papers_awaiting_removal` (
-  `paper_name_removal` varchar(255) NOT NULL,
   `Submission_Date` datetime NOT NULL,
   `Submitted_By` varchar(255) NOT NULL DEFAULT '0',
   `Paper_URL` varchar(255) NOT NULL DEFAULT '0',
   `Comment` varchar(255) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`paper_name_removal`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`Submission_Date`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- Data exporting was unselected.
 
@@ -98,7 +106,6 @@ CREATE TABLE IF NOT EXISTS `paper_methodology_and_method` (
 CREATE TABLE IF NOT EXISTS `paper_rating` (
   `paper_rating_date` datetime NOT NULL,
   `paper_name` varchar(255) NOT NULL,
-  `paper_name_rating` varchar(255) NOT NULL,
   `paper_credibility_level` int(1) NOT NULL,
   `paper_credibility_reason` varchar(255) NOT NULL,
   `paper_confidence_level` int(1) NOT NULL,
