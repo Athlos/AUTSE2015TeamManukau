@@ -3,3 +3,64 @@ body {
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
+
+/*Main division body*/
+#main-index { 
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2%;
+  padding-top: .5%;
+  padding-bottom: .5%;
+  margin-top: 5%;
+  color: white;
+  width: 50%;
+  /*height: 100%;*/
+  background: rgba(0,0,0,0.8);
+}
+
+
+#search-index { 
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2%;
+  padding-top: .5%;
+  padding-bottom: .5%;
+  margin-top: 5%;
+  color: white;
+  width: 50%;
+  /*height: 100%;*/
+  background: rgba(0,0,0,0.8);
+  text-align: center;
+}
+
+#search-results { 
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2%;
+  padding-top: .5%;
+  padding-bottom: .5%;
+  margin-top: 5%;
+  color: white;
+  width: 80%;
+  color: white;
+  /*height: 100%;*/
+  background: rgba(0,0,0,0.8);
+  text-align: center;
+}
+
+a, u {
+	color: white;
+	font-size: 20px;
+}
+
+#titles {
+  text-align: center;
+}
+
+#center-elements {
+  text-align: center;
+}
+
+#form-text {
+  color: white;
+}

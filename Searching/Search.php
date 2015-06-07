@@ -6,7 +6,11 @@
 	<title>Results</title>
 </head>
 <body>
-	<?php
+
+<div id="search-results">
+	
+
+<?php
 	$AdvancedSearch = false;
 
 	$count = "";
@@ -127,7 +131,7 @@ if($res != false) {
 	or die("No Results Found");
 
 	echo "<table width='100%' border='1'>";
-	echo "<tr><th>Paper Name</th><th>Paper Information</th><th>Bibliography Info</th><th>Ratings</th><th>Research Information</th></tr>";	
+	echo "<tr><th id='form-text'>Paper Name</th><th id='form-text'>Paper Information</th><th id='form-text'>Bibliography Info</th><th id='form-text'>Ratings</th><th id='form-text'>Research Information</th></tr>";	
 	
 	while ($row) {
 	
@@ -246,5 +250,9 @@ if($res != false) {
 			<!--<input type="submit" value="Save Search">-->
 			<input type="hidden" name="query" value="<?php echo $savedQuery?>"> 
 		</form>
+
+
+</div>
+	
 </body>
 </html>
