@@ -248,14 +248,6 @@
 				{
 					echo "<br> research meta data insertion failed";
 				}
-				//if($conn->query($ratingQuery) === TRUE)
-				//{
-					//echo "<br> rating meta data insertion successful";
-				//}
-				//else
-				//{
-					//echo "<br> rating meta data insertion failed";
-				//}
 				if($conn->query($bibliographyQuery) === TRUE)
 				{
 					echo "<br> bibliography meta data insertion successful";
