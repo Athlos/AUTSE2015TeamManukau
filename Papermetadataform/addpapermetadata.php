@@ -9,7 +9,7 @@
 			//this php script will try to add meta data to the respective tables
 			//checking the values from papermetadataform.php if the values entered are not
 			//usable or left blank the value in the table will be "empty now will edit later"
-			if(isset ($_GET["paper_name"]))
+			if(isset ($_GET["paper_name"]) && $_GET["paper_name"] != "")
 			{
 				$paper_name = $_GET["paper_name"];
 			}
@@ -17,106 +17,92 @@
 			{
 				$paper_name = "default_name";
 			}
-			if(isset ($_GET["paper_url"]))
-			{
-				$paper_url = $_GET["paper_url"];
-			}
-			else
-			{
-				$paper_url = "default_url";
-			}
-			if(isset ($_GET["paper_submitter"]))
-			{
-				$paper_submitter = $_GET["paper_submitter"];
-			}
-			else
-			{
-				$paper_submitter = "default_submitter";
-			}
 			if(isset ($_GET["methodology_name"]) && $_GET["methodology_name"] != "")
 			{
 				$methodology_name = $_GET["methodology_name"];
 			} 
 			else{
-				$methodology_name = "empty now will edit later";
+				$methodology_name = "no data available";
 			}
 			if(isset ($_GET["methodology_description"]) && $_GET["methodology_description"] != "")
 			{
 				$methodology_description = $_GET["methodology_description"];
 			}
-			else {
-				$methodology_description = "empty now will edit later";
-			}
-			if(isset ($_GET["method_name"]) && $_GET["method_name"] != "")
+			else 
 			{
-				$method_name = $_GET["method_name"];
+				$methodology_description = "no data available";
 			}
-			else {
-				$method_name = "empty now will edit later";
-			}
-			if(isset ($_GET["method_description"]) && $_GET["method_description"] != "")
+			if(isset ($_GET["practice_name"]) && $_GET["practice_name"] != "")
 			{
-				$method_description = $_GET["method_description"];
+				$practice_name = $_GET["practice_name"];
 			}
-			else {
-				$method_description = "empty now will edit later";
+			else 
+			{
+				$practice_name = "no data available";
+			}
+			if(isset ($_GET["practice_description"]) && $_GET["practice_description"] != "")
+			{
+				$practice_description = $_GET["practice_description"];
+			}
+			else 
+			{
+				$practice_description = "no data available";
 			}
 			if(isset ($_GET["evidence_source_research_level"]) && $_GET["evidence_source_research_level"] != "")
 			{
 				$evidence_source_research_level = $_GET["evidence_source_research_level"];
 			}
-			else {
-				$evidence_source_research_level = "empty now will edit later";
-			}
-			if(isset ($_GET["evidence_context"]) && $_GET["evidence_context"] != "")
+			else 
 			{
-				$evidence_context = $_GET["evidence_context"];
-			}
-			else {
-				$evidence_context = "empty now will edit later";
+				$evidence_source_research_level = "no data available";
 			}
 			if(isset ($_GET["evidence_benefit_outcomes"]) && $_GET["evidence_benefit_outcomes"] != "")
 			{
 				$evidence_benefit_outcomes = $_GET["evidence_benefit_outcomes"];
 			}
-			else {
-				$evidence_benefit_outcomes = "empty now will edit later";
+			else 
+			{
+				$evidence_benefit_outcomes = "no data available";
 			}
 			if(isset ($_GET["evidence_result"]) && $_GET["evidence_result"] != "")
 			{
 				$evidence_result = $_GET["evidence_result"];
 			}
-			else {
-				$evidence_result = "empty now will edit later";
+			else 
+			{
+				$evidence_result = "no data available";
 			}
 			if(isset ($_GET["evidence_method_implemention_integrity"]) && $_GET["evidence_method_implemention_integrity"] != "")
 			{
 				$evidence_method_implemention_integrity = $_GET["evidence_method_implemention_integrity"];
 			}
-			else {
-				$evidence_method_implemention_integrity = "empty now will edit later";
+			else 
+			{
+				$evidence_method_implemention_integrity = "no data available";
 			}
 			if(isset ($_GET["research_question"]) && $_GET["research_question"] != "")
 			{
 				$research_question = $_GET["research_question"];
 			}
-			else {
-				$research_question = "empty now will edit later";
+			else 
+			{
+				$research_question = "no data available";
 			}
 			if(isset ($_GET["research_method"]) && $_GET["research_method"] != "")
 			{
 				$research_method = $_GET["research_method"];
-				echo $research_method;
 			}
-			else {
-				$research_method = "empty now will edit later";
+			else 
+			{
+				$research_method = "no data available";
 			}
 			if(isset ($_GET["research_metrics"]) && $_GET["research_metrics"] != "")
 			{
 				$research_metrics = $_GET["research_metrics"];
 			}
-			else {
-				$research_metrics = "empty now will edit later";
+			else 
+			{
+				$research_metrics = "no data available";
 			}
 			if(isset ($_GET["research_participants"]) && $_GET["research_participants"] != "")
 			{
@@ -124,7 +110,7 @@
 			}
 			else
 			{
-				$research_participants = "empty now will edit later";
+				$research_participants = "no data available";
 			}
 			if(isset($_GET["paper_authors"]) && $_GET["paper_authors"] != "")
 			{
@@ -132,7 +118,7 @@
 			}
 			else
 			{
-				$paper_authors = "empty now will edit later";
+				$paper_authors = "no data available";
 			}
 			if(isset($_GET["paper_year"]) && $_GET["paper_year"] != "")
 			{
@@ -140,7 +126,7 @@
 			}
 			else
 			{
-				$paper_year = "empty now will edit later";
+				$paper_year = "no data available";
 			}
 			if(isset($_GET["paper_journal_name"]) && $_GET["paper_journal_name"] != "")
 			{
@@ -148,7 +134,55 @@
 			}
 			else
 			{
-				$paper_journal_name = "empty now will edit later";
+				$paper_journal_name = "no data available";
+			}
+			if(isset($_GET['context_who']) && $_GET['context_who'] != "")
+			{
+				$context_who = $_GET['context_who'];
+			}
+			else
+			{
+				$context_who = "no data available";
+			}
+			if(isset($_GET['context_what']) && $_GET['context_what'] != "")
+			{
+				$context_what = $_GET['context_what'];
+			}
+			else
+			{
+				$context_what = "no data available";
+			}
+			if(isset($_GET['context_when']) && $_GET['context_when'] != "")
+			{
+				$context_when = $_GET['context_when'];
+			}
+			else
+			{
+				$context_when ="no data available";
+			}
+			if(isset($_GET['context_where']) && $_GET['context_where'] != "")
+			{
+				$context_where = $_GET['context_where'];
+			}
+			else
+			{
+				$context_where ="no data available";
+			}
+			if(isset($_GET['context_why']) && $_GET['context_why'] != "")
+			{
+				$context_why = $_GET['context_why'];
+			}
+			else
+			{
+				$context_why ="no data available";
+			}
+			if(isset($_GET['context_how']) && $_GET['context_how'] != "")
+			{
+				$context_how = $_GET['context_how'];
+			}
+			else
+			{
+				$context_how = "no data available";
 			}
 			//connect to the database to submit data
 			include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
@@ -157,19 +191,12 @@
 			//creates a query that submits the data into the table names in the table are subject to change
 			//methodology table query
 			$methodologyQuery = "INSERT INTO paper_methodology_and_method(paper_name_method,paper_methodology_name,paper_methodology_description,
-			paper_method_name,paper_method_description)
-			VALUES ('$paper_name','$methodology_name','$methodology_description','$method_name','$method_description')";
+			paper_practice_name,paper_practice_description)
+			VALUES ('$paper_name','$methodology_name','$methodology_description','$practice_name','$practice_description')";
 			//evidence table query
-			$evidenceQuery = "INSERT INTO paper_evidence_source_and_item(paper_name_evidence,paper_evidence_source_bibliography_references,
-			paper_evidence_source_research_level,paper_evidence_context,paper_evidence_benefit_outcomes,paper_evidence_result,
-			paper_evidence_method_implemention_integrity)
-			VALUES ('$paper_name','$evidence_source_research_level','$evidence_context',
-			'$evidence_benefit_outcomes','$evidence_result','$evidence_method_implemention_integrity')";
-			
-			$evidenceQuery = "INSERT INTO paper_evidence_source_and_item (paper_name_evidence, paper_evidence_source_research_level, 
-			paper_evidence_context, paper_evidence_benefit_outcomes, paper_evidence_result,paper_evidence_method_implemention_integrity) 
-			VALUES ('$paper_name','$evidence_source_research_level','$evidence_context',
-			'$evidence_benefit_outcomes','$evidence_result','$evidence_method_implemention_integrity')";
+			$evidenceQuery = "INSERT INTO paper_evidence_source_and_item(paper_name_evidence,
+			paper_evidence_source_research_level,paper_evidence_benefit_outcomes,paper_evidence_result,	paper_evidence_method_implemention_integrity)
+			VALUES ('$paper_name','$evidence_source_research_level','$evidence_benefit_outcomes','$evidence_result','$evidence_method_implemention_integrity')";
 			//research table query
 			$reserachQuery = "INSERT INTO paper_research(paper_name_research,paper_research_question,paper_research_method,
 			paper_research_metrics,	paper_research_participants)
@@ -184,81 +211,74 @@
 			paper_average_confidence) 
 			VALUES ('now()', '', '', '', '', '', '', 'NULL', 'NULL')";
 			
+			$contextQuery = "INSERT INTO paper_context(paper_name_context, paper_context_who, paper_context_what, paper_context_when, paper_context_where, paper_context_why, paper_context_how) 
+			VALUES ('$paper_name','$context_who','$context_what','$context_when','$context_where','$context_why','$context_how')";
+			
 			
 			//selects the paper from the unapproved paper list
 			$selectUnapprovedPaperQuery = "SELECT * FROM unapproved_papers WHERE paper_name = '$paper_name'";
-			//executes the query
-			//$result = mysqli_query($conn, $selectUnapprovedPaperQuery)
-			//or die("cannot select info from unapproved papers table");
-			//saves the results to a row array
-			//$row = mysqli_fetch_row($result);
-			//enters the info into the add to approve papers query
-			//while($row) 
-			//{
-				//$addToApproved = "INSERT INTO approved_papers (paper_name,Submission_Date,Submitted_By,Paper_URL, paper_has_metadata)
-				//VALUES
-				//('$paper_name','$row[1]','$row[2]','$row[3]')";
-				//$row = mysqli_fetch_row($result);
-			//}		
-			$addToApproved = "INSERT INTO approved_papers (paper_name,Submission_Date,Submitted_By,Paper_URL)
+	
+			$addToApproved = "INSERT INTO approved_papers (paper_name,Submission_Date)
 							VALUES
-							('$paper_name','now()','$paper_submitter','$paper_url')";
+							('$paper_name','now()')";
 			if($conn->query($addToApproved) === TRUE)
 			{
 				echo "<br> successfully added the paper to the approved papers list";
 				if (($conn->query($methodologyQuery) === TRUE))
 				{
-					echo "<br>method meta data inserted successfully";
+					echo "<br>method meta data insertion successful";
 				}
 				else
 				{
-					echo "<br>method meta data not inserted successfully";
+					echo "<br>method meta data insertion failed";
 				}
 				if($conn->query($evidenceQuery) === TRUE)
 				{
-					echo "<br> evidence meta data inserted successfully";
-					
+					echo "<br> evidence meta data insertion successful";			
 				}
 				else
 				{
-					echo "<br> evidence meta data not inserted successfully";
-					echo $evidenceQuery;
+					echo "<br> evidence meta data insertion failed";
 				}
 				if($conn->query($reserachQuery) === TRUE)
 				{
-					echo "<br> research meta data inserted successfully";
+					echo "<br> research meta data insertion successful";
 				}
 				else
 				{
-					echo "<br> research meta data not inserted successfully";
+					echo "<br> research meta data insertion failed";
 				}
-				if($conn->query($ratingQuery) === TRUE)
-				{
-					echo "<br> rating meta data inserted successfully";
-					
-				}
-				else
-				{
-					echo "<br> rating meta data not inserted successfully";
-				}
+				//if($conn->query($ratingQuery) === TRUE)
+				//{
+					//echo "<br> rating meta data insertion successful";
+				//}
+				//else
+				//{
+					//echo "<br> rating meta data insertion failed";
+				//}
 				if($conn->query($bibliographyQuery) === TRUE)
 				{
-					echo "<br> bibliography meta data inserted successfully";
+					echo "<br> bibliography meta data insertion successful";
 				}
 				else
 				{
-					echo "<br> bibliography meta data not inserted successfully";
+					echo "<br> bibliography meta data insertion failed";
+				}
+				if($conn->query($contextQuery) === TRUE)
+				{
+					echo "<br> context meta data insertion successful";
+				}
+				else
+				{
+					echo "<br> context meta data insertion failed";
 				}
 			}
 			else
 			{
 				echo "<br> Could not add paper to approved papers list";
 			}
-			//destroy session
-			// session_destroy();
-			//close connection
 			mysqli_close($conn);
 		?>
-		<br><a href="/AUTSE2015TeamManukau/">Go Back</a><br>
+		<br><a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
 	</body>
 </html>
