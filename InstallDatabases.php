@@ -40,10 +40,7 @@
 				  `paper_credibility_reason` varchar(255) NOT NULL,
 				  `paper_confidence_level` int(1) NOT NULL,
 				  `paper_confidence_reason` varchar(12) NOT NULL,
-				  `rater` varchar(255) NOT NULL,
-				  `paper_average_credibility` float DEFAULT NULL,
-				  `paper_average_confidence` float DEFAULT NULL,
-				  PRIMARY KEY (`paper_rating_date`)
+				  PRIMARY KEY (`paper_name`)
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 		if ($conn->query($query) === FALSE)
 		echo "paper rating list failed to create";

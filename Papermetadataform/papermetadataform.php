@@ -1,6 +1,7 @@
 <html>
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/AUTSE2015TeamManukau/mystyles.css">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<script>
 		$(document).ready(function () {
@@ -19,6 +20,9 @@
 		        if (value == "Show/Hide Bibliographic References") {
 		        	$("#text_form4").toggle(500);
 		        };
+		        if (value == "Show/Hide Paper Ratings") {
+		        	$("#text_form5").toggle(500);
+		        };		        
 		    });
 		});
 
@@ -50,6 +54,18 @@
 		       };	
 		    }
 
+		    function clearRefAuthorText() {
+		    	document.getElementById("ref_author").value = "";
+		    }
+
+		    function clearRefYearText() {
+		    	document.getElementById("ref_year").value = "";
+		    }
+
+		    function clearJournalNameText() {
+		    	document.getElementById("ref_journal_name").value = "";
+		    }		    		    
+
 	</script>	
 	<style type="text/css"> 
 			<style type="text/css">
@@ -71,13 +87,7 @@
 				text-align: left;
 			}
 	</style> 
-	<script type="text/javascript">
-		// $(document).ready(function(){
-    		// $("#table-meta-data-form").children().css({"color": "red", "border": "2px solid red", "width" : "150px"});
-		// });
 
-	</script>
-	<script src="myscripts.js"></script>
 </head> 
 <body>
 	<h1>Paper Meta-data Form </h1>
@@ -218,6 +228,63 @@
 			</fieldset>
 			<br>
 			<br>
+
+			<input id="toggle-button" type="button" class="modeClass" name="change_mode" value="Show/Hide Paper Ratings"/>
+			<fieldset id="text_form5">	
+				<!-- Research table -->
+				<table id="table-meta-data-form">
+					<!-- Credibility Level -->
+					<tr>
+						<td>Credibility Level:</td> 
+					</tr>					
+					<tr>
+						<td>
+							<select id="credibility_level" name="credibility_level" onchange="getval(this)"> 
+								<option value="0">please select a rating</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>							
+							</select>
+						</td>
+					</tr>
+					<!-- Credibility Reason -->
+					<tr>					
+						<td>
+							Credibility Reason:<br>
+							<input type="text" name="credibility_reason">
+						</td>
+					</tr>
+					<!-- Confidence Level -->
+					<tr>
+						<td>Confidence Level:</td> 
+					</tr>	
+					<tr>
+						<td>
+							<select id="confidence_level" name="confidence_level" onchange="getval(this)"> 
+								<option value="0">please select a rating</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>							
+							</select>
+						</td>
+					</tr>	
+
+					<!-- Confidence Reason -->
+					<tr>					
+						<td>
+							Confidence Reason:<br>
+							<input type="text" name="confidence_reason">
+						</td>
+					</tr>
+													
+
+									
+				</table>
+			</fieldset>
 			<input id="toggle-button" type="button" class="modeClass" name="change_mode" value="Show/Hide Research"/>
 			<fieldset id="text_form3">	
 				<!-- Research table -->
@@ -249,17 +316,16 @@
 			<input id="toggle-button" type="button" class="modeClass" name="change_mode" value="Show/Hide Bibliographic References"/>
 			<fieldset id="text_form4">	
 				<table id="table-meta-data-form">
+				<!-- id="" name="" -->
 					<tr>
 						<td><h3>Bibliographic references</h3><td>
 					</tr>
 					<td>
-						Paper Author
-					</td>
-					<td>
-						Paper Year
-					</td>
-					<td>
-						Paper Journal Name
+						<input id="ref_author" name="ref_author" type="text" value="Enter paper author(s) - Separate by comma" onfocus="clearRefAuthorText();"><br>
+	
+						<input id="ref_year" name="ref_year" type="text" value="Enter year of publication" onfocus="clearRefYearText();"><br>
+				
+						<input id="ref_journal_name" name="ref_journal_name" type="text" value="Enter journal name" onfocus="clearJournalNameText();"><br>
 					</td>
 				</table>
 			</fieldset>

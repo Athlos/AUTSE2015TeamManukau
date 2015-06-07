@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content = "text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="/AUTSE2015TeamManukau/mystyles.css">
 	<title>Results</title>
 </head>
 <body>
@@ -18,9 +19,10 @@
 		} else {
 			$count++;
 		}
+
 	}
-	echo "<br>"."And/Or ";
-	print_r($andors);
+	//echo "<br>"."And/Or ";
+	//print_r($andors);
 	
 	
 	$count = "";
@@ -34,8 +36,8 @@
 			$count++;
 		}
 	}
-	echo "<br>"."Fields ";
-	print_r($fields);
+	//echo "<br>"."Fields ";
+	//print_r($fields);
 	
 	$count = "";
 	$operators = array();
@@ -48,8 +50,8 @@
 			$count++;
 		}
 	}
-	echo "<br>"."Operators ";
-	print_r($operators);
+	//echo "<br>"."Operators ";
+	//print_r($operators);
 	
 	$count = "";
 	$values = array();
@@ -61,8 +63,8 @@
 			$count++;
 		}
 	}
-	echo "<br>"."Values ";
-	print_r($values);
+	//echo "<br>"."Values ";
+	//print_r($values);
 	
 	
 	
@@ -79,30 +81,25 @@
 	include(dirname(__DIR__)."/../AUTSE2015TeamManukau/DatabaseLogin.php");
 	
 	
-	//approved papers 0-3
-	//paper_evidence_source_and_item 4-9
-	//paper_methodology_and_method 10-14
-	//paper_rating 15-23
-	//paper_research 24-28
 	
 	$parameters = "";
 	
-	while($count > 0) {
+	while($count > 0 && $values[$count-1] != "") {
 		$count--;
 		//$parameters = $parameters . "";
 		if($andors[$count] == "And") {
-			$parameters = $parameters . " AND WHERE '$fields[$count]' = '$values[$count]'";
+			$parameters = $parameters . " AND $fields[$count] $operators[$count] '$values[$count]'";
 		} else {
-			$parameters = $parameters . " OR WHERE '$fields[$count]' = '$values[$count]'";
+			$parameters = $parameters . " OR $fields[$count] $operators[$count] '$values[$count]'";
 		}
 		
 	} 
 
 		$select = "SELECT * 
-		FROM approved_papers ";
+		FROM approved_papers";
 		$join = " INNER JOIN paper_evidence_source_and_item 
 		ON approved_papers.paper_name=paper_evidence_source_and_item.paper_name_evidence
-		INNER JOIN paper_methodology_and_method 
+		INNER JOIN paper_methodology_and_method
 		ON approved_papers.paper_name=paper_methodology_and_method.paper_name_method
 		LEFT JOIN paper_rating
 		ON approved_papers.paper_name=paper_rating.paper_name 
@@ -110,12 +107,17 @@
 		ON approved_papers.paper_name=paper_research.paper_name_research
 		INNER JOIN paper_bibliography_info
 		ON approved_papers.paper_name=paper_bibliography_info.paper_name_bibliography
-		WHERE approved_papers.paper_name LIKE '%$search%'";
+		INNER JOIN paper_context
+		ON approved_papers.paper_name=paper_context.paper_name_context";
+		
+		$search = " WHERE approved_papers.paper_name LIKE '%$search%'";
+		$ssearch = " WHERE approved_papers.paper_name LIKE ''%$search%''";
+		
+		$query = $select . $join . $search . $parameters . ";";
 		
 		
-		$query = $select . $join . $parameters . ";";
-		echo "<br>"."<br>"."EXECUTING QUERY : ".$query;
-		$savedQuery = $query;
+		//echo "<br>"."<br>"."EXECUTING QUERY : ".$query;
+		$savedQuery = $select . $join . $ssearch . $parameters . ";";
 		$res = $conn->query($query);
 	//show results 
 	$array = array();
@@ -173,6 +175,14 @@ if($res != false) {
 	
 	array_push($array, $row[0]);
 	
+	//approved papers 0-1
+	//paper_evidence_source_and_item 2-6
+	//paper_methodology_and_method 7-11
+	//paper_rating 12-17
+	//paper_research 18-22
+	//paper_bibliography_info 23-26
+	
+	
 	echo "<tr><td align='center'>";
 		?>
 
@@ -187,10 +197,8 @@ if($res != false) {
 		<?php
 			echo "</td><td>";
 		?>
-		<label>Click <name = "display"> </label>
-		<a href="<?php echo $row[3]?>">Here</a><br>
-		<label>Methodology : <?php echo $row[11]?><name = "display"> </label><br>
-		<label>Method : <?php echo $row[13]?><name = "display"> </label><br>
+		<label>Methodology : <?php echo $row[8]?><name = "display"> </label><br>
+		<label>Method : <?php echo $row[10]?><name = "display"> </label><br>
 		
 		
 		
@@ -199,23 +207,22 @@ if($res != false) {
 		
 		<?php echo "</td><td>"; ?>
 		
-		<label>Author : <?php echo $row[30]?><name = "display"> </label><br>
-		<label>Date Of Publication : <?php echo $row[31]?><name = "display"> </label><br>
-		<label>Published In : <?php echo $row[32]?><name = "display"> </label><br>
+		<label>Author : <?php echo $row[24]?><name = "display"> </label><br>
+		<label>Date Of Publication : <?php echo $row[25]?><name = "display"> </label><br>
+		<label>Published In : <?php echo $row[26]?><name = "display"> </label><br>
 		
 		<?php echo "</td><td>"; ?>
 		
-		<label>Credibility Rating : <?php echo $averageCred?><name = "display"> </label><br>
-		<label>Quality Rating: <?php echo $averageQual?><name = "display"> </label><br>
-		<input type = "submit" name = "goButton" value = "Rate Paper">
+		<label>Credibility Rating : <?php echo $row[14]?><name = "display"> </label><br>
+		<label>Confidence Rating: <?php echo $row[16]?><name = "display"> </label><br>
 		<!-- http://stackoverflow.com/questions/2680160/how-can-i-tell-which-button-was-clicked-in-a-php-form-submit SEND THIS TO A FORM THAT REDIRECTS TO EITHER FAVOURITE OR CONFIDENCE/QUALITY DEPENDING ON WHICH BUTTON WAS
 		CLICKED-->
 		</form>
 		<?php echo "</td><td>"; ?>
 		
-		<label>Research Question : <?php echo $row[25]?><name = "display"> </label><br>
-		<label>Research Method : <?php echo $row[26]?><name = "display"> </label><br>
-		<label>Research Metrics : <?php echo $row[27]?><name = "display"> </label><br>
+		<label>Research Question : <?php echo $row[19]?><name = "display"> </label><br>
+		<label>Research Method : <?php echo $row[20]?><name = "display"> </label><br>
+		<label>Research Metrics : <?php echo $row[21]?><name = "display"> </label><br>
 		
 		<?php
 		echo "</td></tr>";

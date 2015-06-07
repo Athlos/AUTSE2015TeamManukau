@@ -1,6 +1,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/AUTSE2015TeamManukau/mystyles.css">
 <title>Search Paper</title>
 
 <style>
@@ -89,19 +90,19 @@ table, th, td {
   
     <td>
 		<select name="field" id="searchField">
-			<option>Year of Publication</option>
-			<option>Author</option>
-			<option>Journal of Publication</option>
-			<option>Methodology</option>
-			<option>Practice</option>
-			<option>Research Level</option>
-			<option>Evidence Context<To include who what etc></option>
-			<option>Research Question</option>
-			<option>Research Method</option>
-			<option>Research Metrics</option>
-			<option>Research participants</option>
-			<option>Credibility Rating</option>
-			<option>Quality Rating</option>
+			<option value="paper_bibliography_info.paper_year">Year of Publication</option>
+			<option value="paper_bibliography_info.paper_author">Author</option>
+			<option value="paper_bibliography_info.paper_journal_name">Journal of Publication</option>
+			<option value="paper_methodology_and_method.paper_methodology_name">Methodology</option>
+			<option value="paper_methodology_and_method.paper_practice_name">Practice</option>
+			<option value="paper_evidence_source_and_item.paper_evidence_source_research_level">Research Level</option>
+			<option value="paper_context.paper_name_context">Evidence Context</option>
+			<option value="paper_research.paper_research_question">Research Question</option>
+			<option value="paper_research.paper_research_method">Research Method</option>
+			<option value="paper_research.paper_research_metrics">Research Metrics</option>
+			<option value="paper_research.paper_research_participants">Research participants</option>
+			<option value="paper_rating.paper_credibility_level">Credibility Rating</option>
+			<option value="paper_rating.paper_confidence_level">Confidence Rating</option>
 		</select>
 	</td>
 	

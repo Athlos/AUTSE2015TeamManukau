@@ -14,7 +14,8 @@
 		
 		//REMOVE THIS CODE FROM THE PHP FILE YOU ARE ADDING THIS TO
 		//$conn = @mysqli_connect('mysql.1freehosting.com','u317137895_root','aut123', 'u317137895_test')
-		$conn = @mysqli_connect('127.0.0.1','root','', 'test')
+		// $conn = @mysqli_connect('127.0.0.1','root','', 'test')
+		$conn = @mysqli_connect('mysql.1freehosting.com','u317137895_root','aut123', 'u317137895_test')
 		or die('Failed to connect to server');
 		
 		

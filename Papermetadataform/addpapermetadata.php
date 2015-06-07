@@ -1,10 +1,26 @@
 <html>
 	<head>
 		<meta http-equiv="content-type" context = "text/html; charset=utf-8"/>
+		<link rel="stylesheet" type="text/css" href="/AUTSE2015TeamManukau/mystyles.css">
 	</head>
 	<body>
 		<h1>Adding Metadata</h1>
 		<?php
+
+			// Paper ratings get variables			
+			$credibility_level = $_GET['credibility_level'];
+			$credibility_reason = $_GET['credibility_reason'];
+			$confidence_level = $_GET['confidence_level'];
+			$confidence_reason = $_GET['confidence_reason'];
+			// Bibliography get variables
+			$paper_authors = $_GET['ref_author'];
+			$paper_year = $_GET['ref_year'];
+			$paper_journal_name = $_GET['ref_journal_name'];
+
+
+
+
+
 			session_start();
 			//this php script will try to add meta data to the respective tables
 			//checking the values from papermetadataform.php if the values entered are not
@@ -112,30 +128,6 @@
 			{
 				$research_participants = "no data available";
 			}
-			if(isset($_GET["paper_authors"]) && $_GET["paper_authors"] != "")
-			{
-				$paper_authors = $_GET["paper_authors"];
-			}
-			else
-			{
-				$paper_authors = "no data available";
-			}
-			if(isset($_GET["paper_year"]) && $_GET["paper_year"] != "")
-			{
-				$paper_year = $_GET["paper_year"];
-			}
-			else
-			{
-				$paper_year = "no data available";
-			}
-			if(isset($_GET["paper_journal_name"]) && $_GET["paper_journal_name"] != "")
-			{
-				$paper_journal_name = $_GET["paper_journal_name"];
-			}
-			else
-			{
-				$paper_journal_name = "no data available";
-			}
 			if(isset($_GET['context_who']) && $_GET['context_who'] != "")
 			{
 				$context_who = $_GET['context_who'];
@@ -204,23 +196,23 @@
 			//bibliography table query
 			$bibliographyQuery = "INSERT INTO paper_bibliography_info  (paper_name_bibliography, paper_author, paper_year, paper_journal_name) 
 			VALUES('$paper_name','$paper_authors','$paper_year','$paper_journal_name')";
-			//rating table query needed for demo			
-			
+
+
+
+			//ratings table query
 			$ratingQuery = "INSERT INTO paper_rating (paper_rating_date, paper_name,  paper_credibility_level, 
-			paper_credibility_reason, paper_confidence_level, paper_confidence_reason, rater, paper_average_credibility, 
-			paper_average_confidence) 
-			VALUES ('now()', '', '', '', '', '', '', 'NULL', 'NULL')";
-			
+			paper_credibility_reason, paper_confidence_level, paper_confidence_reason) 
+			VALUES ('now()', '$paper_name', '$credibility_level', '$credibility_reason', '$confidence_level', '$confidence_reason')";
+			//$ratingQuery = "INSERT INTO paper_rating (paper_rating_date, paper_name,  paper_credibility_level, 
+			//paper_credibility_reason, paper_confidence_level, paper_confidence_reason) 
+			//VALUES ('0000-00-00 00:00:00', '1', '1', '1', '1', '1')";
+
 			$contextQuery = "INSERT INTO paper_context(paper_name_context, paper_context_who, paper_context_what, paper_context_when, paper_context_where, paper_context_why, paper_context_how) 
 			VALUES ('$paper_name','$context_who','$context_what','$context_when','$context_where','$context_why','$context_how')";
-			
-			
-			//selects the paper from the unapproved paper list
-			$selectUnapprovedPaperQuery = "SELECT * FROM unapproved_papers WHERE paper_name = '$paper_name'";
 	
 			$addToApproved = "INSERT INTO approved_papers (paper_name,Submission_Date)
 							VALUES
-							('$paper_name','now()')";
+							('$paper_name','0000-00-00 00:00:00')";//submission date was the original primary key
 			if($conn->query($addToApproved) === TRUE)
 			{
 				echo "<br> successfully added the paper to the approved papers list";
@@ -264,6 +256,14 @@
 				{
 					echo "<br> context meta data insertion failed";
 				}
+				if($conn->query($ratingQuery))
+				{
+					echo "<br> rating meta data insertion successful";
+				}
+				else
+				{
+					echo "<br> rating meta data insertion failed";
+				}
 			}
 			else
 			{
@@ -271,6 +271,6 @@
 			}
 			mysqli_close($conn);
 		?>
-		<br><a href="http://localhost/AUTSE2015TeamManukau/">Go Back</a><br>
+		<br><a href="/AUTSE2015TeamManukau/">Go Back</a><br>
 	</body>
 </html>
